@@ -4,10 +4,10 @@ class flight_attendant(employee):
         self.supervisor = supervisor
         self.airplane_type = airplane
         
-    def set_supervisor():
+    def set_supervisor(self):
         pass
 
-    def set_airplane_type():
+    def set_airplane_type(self):
         pass
 
         
