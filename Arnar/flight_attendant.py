@@ -2,7 +2,7 @@ class flight_attendant(employee):
 
     def __init__ (self, supervisor, airplane_type):
         self.supervisor = supervisor
-        self.airplane_type = airplane
+        self.airplane_type = airplane_type
         
     def set_supervisor(self):
         pass

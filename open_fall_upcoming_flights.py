@@ -17,7 +17,7 @@ def print_list(listinn):
         print(line)
 
 def main():
-    file_object = get_aircraft()
+    file_object = get_upcoming_flight()
     listinn = make_list(file_object)
     print(listinn)
 main()
