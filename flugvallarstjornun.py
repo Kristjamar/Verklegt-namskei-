@@ -1,3 +1,8 @@
+Aircarft = 1
+Crew = 2
+Destinations = 3
+PastFlights = 4
+UpcommingFlights = 5
 '''---------- User Interface ----------'''
 
 
@@ -121,10 +126,11 @@ class Airplane():
 
 
 class Pilot(Employee):
-    def __init__(self, airplane, flight_license, airplane_type):
+    def __init__(self, airplane, flight_license, airplane_type, captain):
         self.airplane = airplane
         self.fligh_license = flight_license
         self.airplane_type = airplane_type
+        self.captain = captain
 
     def update_licence(self):
         pass
@@ -135,7 +141,17 @@ class Pilot(Employee):
     def update_aiplane_type(self):
         pass
 '''---------- Database ----------'''
-
+class Database():
+    filename = ""
+        
+    def getPastFlights(self):               
+        Database.filename = "PastFlights.csv"
+        try:
+            file_object = open(Database.filename, "w+")
+            return file_object
+        except FileNotFoundError:
+            print("Filename {} not found!".format(Database.filename))
+    
 
 '''---------- Main ----------'''
 def MainMenu():
