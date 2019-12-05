@@ -1,6 +1,14 @@
+import time
+
 class Flight():
     distance = None
-
+    
+    longyearbyean = 4
+    nuuk = 3
+    kulusuk = 2
+    thorshavn = 1
+    thingwall = 2
+    
     def __init__(self, pilots, flighttype, flightattendants, numseats, flightnum, airplanetype, date, flightreserved, given_distance):
         self.pilots = pilots
         self.flighttype_str = flighttype
@@ -69,13 +77,20 @@ class flight_attendant(Employee):
 
 class voyage(Flight):
     def __init__(self, time_iceland, time_other):
-        self.voydis = Flight.distance
+        ## self.voydis = Flight.distance
+        self.voydis = 100
+        self.time_iceland = time_iceland
+        self.time_other = time_other
 
     def double_distance(self):
         self.voydis += self.voydis
     
-    def double_time_of_arriveal(self):
-        pass
+    def time_of_arrival(self):
+        self.time_iceland += Flight.kulusuk
+        self.time_iceland += Flight.nuuk
+        self.time_iceland += Flight.thorshavn
+        self.time_iceland += Flight.tingwall
+        self.time_iceland += Flight.longyearbyean
     
     def check_pilot_licence(self):
         pass
@@ -133,3 +148,5 @@ class Pilot(Employee):
 
     def update_aiplane_type(self):
         pass
+    
+    
