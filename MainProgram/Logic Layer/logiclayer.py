@@ -1,5 +1,7 @@
 class Flight():
-    def __init__(self, pilots, flighttype, flightattendants, numseats, flightnum, airplanetype, date, flightreserved, distance):
+    distance = None
+
+    def __init__(self, pilots, flighttype, flightattendants, numseats, flightnum, airplanetype, date, flightreserved, given_distance):
         self.pilots = pilots
         self.flighttype_str = flighttype
         self.flightattendants = flightattendants
@@ -8,7 +10,7 @@ class Flight():
         self.airplanetype = airplanetype
         self.date = date
         self.reserved = flightreserved
-        self.distance = distance
+        Flight.distance = given_distance
 
     def checkTimeAvailable(self, is_time_avail):
         self.reserved = is_time_avail
@@ -56,6 +58,7 @@ class flight_attendant(Employee):
     def __init__ (self, supervisor, airplane_type):
         self.supervisor = supervisor
         self.airplane_type = airplane_type
+        self.distance = Flight.distance
         
     def set_supervisor(self):
         pass
@@ -64,12 +67,12 @@ class flight_attendant(Employee):
         pass
 
 
-class voyage(Employee):
+class voyage(Flight):
     def __init__(self, time_iceland, time_other):
-        pass
+        self.voydis = Flight.distance
 
     def double_distance(self):
-        pass
+        self.voydis += self.voydis
     
     def double_time_of_arriveal(self):
         pass
