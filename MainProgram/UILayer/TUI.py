@@ -1,4 +1,4 @@
-from LogicLayer.emp_test_breki import Reg_emp
+from prufa.datalayer.datalayertest import Database
 
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
