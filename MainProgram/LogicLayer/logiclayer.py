@@ -184,7 +184,7 @@ class Get_Data():
         ''' Ignore the Error on Database please. To be fixed. - Haffi'''
         self.request = 2
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_gata()
+        self.datalist = self.DBsmith.get_data()
         [print(row) for row in self.datalist]
 
     def get_specific_emp(self):
