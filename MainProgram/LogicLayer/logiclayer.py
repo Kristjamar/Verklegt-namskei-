@@ -171,4 +171,59 @@ class Pilot(Employee):
     def update_aiplane_type(self):
         pass
     
-    
+
+class Get_Data():
+
+    def __init__(self, datalist, request):
+        self.datalist = datalist
+        self.request = request
+        self.DBsmith = None
+
+    def get_emp_list(self):
+        ''' Ignore the Error on Database please. To be fixed. - Haffi'''
+        self.request = 2
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_gata()
+        [print(row) for row in self.datalist]
+
+    def get_specific_emp(self):
+        pass
+
+    def get_pilots(self):
+        pass
+
+    def get_flightattendants(self):
+        pass
+
+    def get_voyage_day_n_week(self):
+        pass
+
+    def get_destinations(self):
+        pass
+
+    def get_emp_not_working(self):
+        pass
+
+    def get_emp_working(self):
+        pass
+
+    def get_emp_destination(self):
+        pass
+
+    def get_emp_work_summary(self):
+        pass
+
+    def get_aircraft_pilot_licence(self):
+        pass
+
+    def get_voyage_status(self):
+        pass
+
+    def get_voyage_ID(self):
+        pass
+
+    def get_pilots_from_airtype(self):
+        pass
+
+    def get_nan_aircrafts(self):
+        pass

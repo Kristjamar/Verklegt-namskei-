@@ -6,7 +6,6 @@ Destinations = 3
 PastFlights = 4
 UpcomingFlights = 5
 
-
 class Database():
 
     def __init__(self, request):
@@ -28,10 +27,11 @@ class Database():
     def get_data(self):               
         try:
             with open(self.filename, 'r', newline='') as self.csvfile:
-                self.reader = csv.DictReader(self.csvfile, fieldnames=self.fieldnames)
-                for row in self.reader:
-                    self.datalist.append(row)
-                return self.datalist
+                self.reader = csv.reader(self.csvfile, skipinitialspace=True)
+                header = next(self.reader)
+                listcreator = [dict(zip(header, map(str, row))) for row in self.reader]
+                return listcreator
+
         except FileNotFoundError:
             print("Filename {} not found!".format(self.filename))
 
@@ -44,7 +44,3 @@ class Database():
 
     def __str__(self):
         return "{}".format(self.datalist)
-
-shit = Database(2)
-shit.get_data()
-print(shit)
