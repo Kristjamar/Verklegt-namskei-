@@ -1,7 +1,8 @@
+from LogicLayer.emp_test_breki import Reg_emp
+
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
 QUIT = "q" or "Q"
-
 
 
 class Menu:
@@ -47,31 +48,56 @@ def first_menu():
     print(main_menu.mainmenu())
     user_input = input("Veldu valmöguleika: ")
     if user_input == "1":
-        print(register_menu.build_menu())
-        tmp_menu()
+        Reg_menu()
     elif user_input == "2":
         print(listing_menu.build_menu())
         tmp_menu()
-    elif user_input == "13":
+    elif user_input == "3":
         print(update_menu.build_menu())
         tmp_menu()
     elif user_input == QUIT:
         exit
+    else:
+        print("Invalid input")
+
+def Reg_menu():
+    print(register_menu.build_menu())
+    user_input = input("Veldu valmöguleika: ")
+    if user_input == "1":
+        Reg_emp()
+        
+    elif user_input == "2":
+        print("WIP MENU, sendi þig aftur á Main menu")
+        first_menu()
+    elif user_input == "3":
+        print("WIP MENU, sendi þig aftur á Main menu")
+        first_menu()
+    elif user_input == "4":
+        print("WIP MENU, sendi þig aftur á Main menu")
+        first_menu()
+    elif user_input == MAINMENU:
+        first_menu()
+    elif user_input == BACK:
+        first_menu()
 
 def tmp_menu():
     user_input = input("Veldu valmöguleika: ")
     if user_input == "1":
-        print("WIP MENU")
+        print("WIP MENU, sendi þig aftur á Main menu")
+        first_menu()
     elif user_input == "2":
-        print("WIP MENU")
+        print("WIP MENU, sendi þig aftur á Main menu")
+        first_menu()
     elif user_input == "3":
-        print("WIP MENU")
+        print("WIP MENU, sendi þig aftur á Main menu")
+        first_menu()
     elif user_input == "4":
-        print("WIP MENU")
+        print("WIP MENU, sendi þig aftur á Main menu")
+        first_menu()
+
     elif user_input == MAINMENU:
         first_menu()
     elif user_input == BACK:
         first_menu()
     
-
 first_menu()

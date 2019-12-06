@@ -1,3 +1,3 @@
-from UI Layer.TUI import TUI
+from UILayer.TUI import TUI
 
 first_menu()
