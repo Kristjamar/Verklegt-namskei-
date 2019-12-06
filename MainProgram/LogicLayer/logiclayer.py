@@ -1,6 +1,14 @@
+import time
+
 class Flight():
     distance = None
-
+    
+    longyearbyean = 4
+    nuuk = 3
+    kulusuk = 2
+    thorshavn = 1
+    tingwall = 2
+    
     def __init__(self, pilots, flighttype, flightattendants, numseats, flightnum, airplanetype, date, flightreserved, given_distance):
         self.pilots = pilots
         self.flighttype_str = flighttype
@@ -79,18 +87,25 @@ class flight_attendant(Employee):
 
 class voyage(Flight):
     def __init__(self, time_iceland, time_other):
-        self.voydis = Flight.distance
+        ## self.voydis = Flight.distance
+        self.voydis = 100
+        self.time_iceland = time_iceland
+        self.time_other = time_other
 
     def double_distance(self):
         self.voydis += self.voydis
     
-    def double_time_of_arriveal(self):
+    def time_of_arrival(self):
         '''
         Sýna hvenær flugvéling lendir á íslandi eftir að hafa flogið til útlanda og svo aftur heim.
         self.time_iceland er gefinn tími þegar flugvélinn tekur af stað. self.time_other er tíminn á tímabeltinu úti.
         Það þarf að reikna þetta úr frá föstunum sem eru uppi.
         '''
-        pass
+        self.time_iceland += Flight.kulusuk
+        self.time_iceland += Flight.nuuk
+        self.time_iceland += Flight.thorshavn
+        self.time_iceland += Flight.tingwall
+        self.time_iceland += Flight.longyearbyean
     
     def check_pilot_licence(self):
         pass
@@ -148,3 +163,5 @@ class Pilot(Employee):
 
     def update_aiplane_type(self):
         pass
+    
+    
