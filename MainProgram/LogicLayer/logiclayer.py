@@ -18,9 +18,14 @@ class Flight():
             return True
 
     def createFlight(self):
-        pass
+        ''' 
+        Þarf að gera fall sem býr til nýtt flug með öllum upplýsingunum sem það tekur inn í __init__() 
+        það væri best að láta þetta fall sækja csv frá Datalayer. Fyrst samt að prufa í testskjali.
+
+        '''
 
     def updateFlight(self):
+        ''' Geyma '''
         pass
 
 
@@ -34,6 +39,9 @@ class Employee():
         self.mobile = mobile
         self.email_str = firstname + lastname + "@nan.is"
         self.address = address
+
+    def createEmployee(self):
+        pass
 
     def updatePhonenumber(self):
         pass
@@ -61,9 +69,11 @@ class flight_attendant(Employee):
         self.distance = Flight.distance
         
     def set_supervisor(self):
-        pass
-
-    def set_airplane_type(self):
+        '''
+        Þetta fall á að beyta einu gildi á flight attendant starfsmanni. 
+        Semsagt að geta breytt úr Supervisor = False yfir í Supervisor = True.
+        Þarf að sækja csv frá Datalayer.
+        '''
         pass
 
 
@@ -75,6 +85,11 @@ class voyage(Flight):
         self.voydis += self.voydis
     
     def double_time_of_arriveal(self):
+        '''
+        Sýna hvenær flugvéling lendir á íslandi eftir að hafa flogið til útlanda og svo aftur heim.
+        self.time_iceland er gefinn tími þegar flugvélinn tekur af stað. self.time_other er tíminn á tímabeltinu úti.
+        Það þarf að reikna þetta úr frá föstunum sem eru uppi.
+        '''
         pass
     
     def check_pilot_licence(self):
