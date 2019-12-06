@@ -49,6 +49,11 @@ class Employee():
         self.address = address
 
     def createEmployee(self):
+        ''' 
+        Þarf að gera fall sem býr til nýjan Employee með öllum upplýsingunum sem það tekur inn í __init__() 
+        það væri best að láta þetta fall sækja csv frá Datalayer. Fyrst samt að prufa í testskjali.
+
+        '''
         pass
 
     def updatePhonenumber(self):
@@ -129,9 +134,6 @@ class Destination():
     
     def updateEmergencyContact(self):
         pass
-
-    def storeFlightLength(self):
-        pass
     
     def __str__(self):
         pass
@@ -145,6 +147,11 @@ class Airplane():
         self.name_of_airplane = name_of_airplane
 
     def create_airplane(self):
+        ''' 
+        Þarf að gera fall sem býr til nýja Flugvél með öllum upplýsingunum sem það tekur inn í __init__() 
+        það væri best að láta þetta fall sækja csv frá Datalayer. Fyrst samt að prufa í testskjali.
+
+        '''
         pass
 
 
