@@ -1,4 +1,4 @@
-from LogicLayer.logiclayer import Get_Data
+from logiclayer.logiclayertest import Get_Data
 
 class Menu:
     def __init__(self, title, option1, option2, option3, option4, how_many_options):
@@ -19,7 +19,7 @@ class Menu:
         print("# 3.{:24} #".format(self.option3))
 
         if self.how_many_options == 4:
-            print("# 4.{:^24} #".format(self.option4))
+            print("# 4.{:24} #".format(self.option4))
 
         print("#                            #")
         print("##############################")
@@ -73,8 +73,6 @@ def menu_builder():
         print(register_menu.build_menu())
         user_input = input("Veldu valmöguleika: ")
         if user_input == "1":
-            # print("WIP MENU, sendi þig aftur á Main menu")
-            # first_menu()
             prufa = Get_Data(2)
             prufa.get_emp_list()
         elif user_input == "2":
@@ -95,20 +93,54 @@ def menu_builder():
         user_input = input("Veldu valmöguleika: ")
         if user_input == "1":
             emplist = Get_Data(2)
-            emplist.get_emp_list()
+            empprinter = emplist.get_emp_list()
+            [print(row) for row in empprinter]
+            print("")
+            print("1. Finna starfsmann")
+            print("2. Leita eftir dagsetningu")
+            user_input_sec = input("Veldu valmöguleika: ")
+            print("")
+            if user_input_sec == "1":
+                ssn_temp = input("Sladu inn kennitolu: ")
+                print("")
+                emp_spec = Get_Data(2, ssn_temp)
+                emp_spec_printer = emp_spec.get_specific_emp()
+                if emp_spec_printer == False:
+                    print("Enginn starfsmaður með þessa kennitölu")
+                else:
+                    print(emp_spec_printer)
+            elif user_input_sec == "2":
+                pass
+            elif user_input_sec == MAINMENU:
+                first_menu()
+            elif user_input_sec == BACK:
+                first_menu()
+
         elif user_input == "2":
             print("WIP MENU, sendi þig aftur á Main menu")
             first_menu()
+
         elif user_input == "3":
             print("WIP MENU, sendi þig aftur á Main menu")
             first_menu()
+
         elif user_input == "4":
             print("WIP MENU, sendi þig aftur á Main menu")
             first_menu()
 
         elif user_input == MAINMENU:
             first_menu()
+
         elif user_input == BACK:
             first_menu()
         
+    # def get_emp_menu():
+
+
+
+    #     elif user_input == MAINMENU:
+    #         first_menu()
+    #     elif user_input == BACK:
+    #         first_menu()
+
     first_menu()

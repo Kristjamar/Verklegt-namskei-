@@ -1,4 +1,4 @@
-from LogicLayer.logiclayer import Employee , Get_Data
+from LogicLayer.logiclayer import Employee , Aircraft, Get_Data
 
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
@@ -91,8 +91,11 @@ def Reg_menu():
         print("WIP MENU, sendi þig aftur á Main menu")
         first_menu()
     elif user_input == "4":
-        print("WIP MENU, sendi þig aftur á Main menu")
-        first_menu()
+        airc_str = New_aircraft()
+        aircraft_type, num_seats, manufacturer, name_of_aircraft = airc_str
+        airc_1 = Aircraft(aircraft_type, num_seats, manufacturer, name_of_aircraft)
+        airc_1.save_aircraft()
+    
     elif user_input == MAINMENU:
         first_menu()
     elif user_input == BACK:
@@ -103,7 +106,22 @@ def get_menu():
     if user_input == "1":
         emplist = Get_Data(2)
         #2 is constant for Crew
-        emplist.get_emp_list()
+        empprinter = emplist.get_emp_list()
+        [print(row) for row in empprinter]
+        print("")
+        print("1. Finna starfsmann")
+        print("2. Leita eftir dagsetningu")
+        user_input_sec = input("Veldu valmöguleika: ")
+        print("")
+        if user_input_sec == "1":
+            ssn_temp = input("Sladu inn kennitolu: ")
+            print("")
+            emp_spec = Get_Data(2, ssn_temp)
+            emp_spec_printer = emp_spec.get_specific_emp()
+            if emp_spec_printer == False:
+                print("Enginn starfsmaður með þessa kennitölu")
+            else:
+                print(emp_spec_printer)
     elif user_input == "2":
         print("WIP MENU, sendi þig aftur á Main menu")
         first_menu()
@@ -140,6 +158,23 @@ def save_employee(emp_dict):
                     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
                     writer.writerow(emp_dict)
+
+def New_aircraft():
+        aircraft_type = input("aircraft_type: ")
+        num_seats = input("num_seats: ")
+        manufacturer = input("manufacturer: ")
+        name_of_aircraft = input("name_of_aircraft: ")
+        
+        airc_str = aircraft_type, num_seats, manufacturer, name_of_aircraft
+        #return aircraft_type, num_seats, manufacturer, name_of_aircraft
+        return airc_str
+
+def save_aircraft(self):
+            with open('employeetest.csv', 'a', newline='') as csvfile:
+                    fieldnames = ['aircraft_type', 'num_seats','manufacturer','name_of_aircraft']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                    writer.writerow(Aircraft.store_aircraft(self))
 
 first_menu()
 #Make employee from user input
