@@ -1,4 +1,4 @@
-from LogicLayer.logiclayer import Employee
+from LogicLayer.logiclayer import Employee, Aircraft
 
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
@@ -98,8 +98,11 @@ def Reg_menu():
         print("WIP MENU, sendi þig aftur á Main menu")
         first_menu()
     elif user_input == "4":
-        print("WIP MENU, sendi þig aftur á Main menu")
-        first_menu()
+        airc_str = New_aircraft()
+        aircraft_type, num_seats, manufacturer, name_of_aircraft = airc_str
+        airc_1 = Aircraft(aircraft_type, num_seats, manufacturer, name_of_aircraft)
+        airc_1.save_aircraft()
+    
     elif user_input == MAINMENU:
         first_menu()
     elif user_input == BACK:
@@ -146,6 +149,23 @@ def save_employee(emp_dict):
                     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
                     writer.writerow(emp_dict)
+
+def New_aircraft():
+        aircraft_type = input("aircraft_type: ")
+        num_seats = input("num_seats: ")
+        manufacturer = input("manufacturer: ")
+        name_of_aircraft = input("name_of_aircraft: ")
+        
+        airc_str = aircraft_type, num_seats, manufacturer, name_of_aircraft
+        #return aircraft_type, num_seats, manufacturer, name_of_aircraft
+        return airc_str
+
+def save_aircraft(self):
+            with open('employeetest.csv', 'a', newline='') as csvfile:
+                    fieldnames = ['aircraft_type', 'num_seats','manufacturer','name_of_aircraft']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                    writer.writerow(Aircraft.store_aircraft(self))
 
 first_menu()
 

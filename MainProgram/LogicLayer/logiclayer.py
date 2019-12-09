@@ -160,20 +160,41 @@ class Destination():
         pass
 
 
-class Airplane():
-    def __init__(self, airplane_type, num_seats, manufacturer, name_of_airplane):
-        self.airplane_type = airplane_type
+class Aircraft():
+    def __init__(self, aircraft_type, num_seats, manufacturer, name_of_aircraft):
+        self.aircraft_type = aircraft_type
         self.num_seats = num_seats
         self.manufacturer = manufacturer
-        self.name_of_airplane = name_of_airplane
+        self.name_of_aircraft = name_of_aircraft
 
-    def create_airplane(self):
+    def New_aircraft():
         ''' 
-        Þarf að gera fall sem býr til nýja Flugvél með öllum upplýsingunum sem það tekur inn í __init__() 
-        það væri best að láta þetta fall sækja csv frá Datalayer. Fyrst samt að prufa í testskjali.
+    Þarf að gera fall sem býr til nýja Flugvél með öllum upplýsingunum sem það tekur inn í __init__() 
+    það væri best að láta þetta fall sækja csv frá Datalayer. Fyrst samt að prufa í testskjali.
 
-        '''
+    '''
+        aircraft_type = input("aircraft_type: ")
+        num_seats = input("num_seats: ")
+        manufacturer = input("manufacturer: ")
+        name_of_aircraft = input("name_of_aircraft: ")
+        
+        airc_str = aircraft_type, num_seats, manufacturer, name_of_aircraft
+        #return aircraft_type, num_seats, manufacturer, name_of_aircraft
+        return airc_str
+        
+    def store_aircraft(self):
+         airc = {'aircraft_type': self.aircraft_type, 'num_seats': self.num_seats, 'manufacturer': self.manufacturer,'name_of_aircraft': self.name_of_aircraft}       
+         return airc
+
+    def __str__(self):
         pass
+
+    def save_aircraft(self):
+            with open('employeetest.csv', 'a', newline='') as csvfile:
+                    fieldnames = ['aircraft_type', 'num_seats','manufacturer','name_of_aircraft']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                    writer.writerow(Aircraft.store_aircraft(self))
 
 
 class Pilot(Employee):
