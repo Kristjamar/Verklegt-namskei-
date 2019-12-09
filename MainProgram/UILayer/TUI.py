@@ -1,4 +1,4 @@
-from LogicLayer.emp_test import Make_and_save_employee
+from LogicLayer.logiclayer import Employee
 
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
@@ -64,7 +64,10 @@ def Reg_menu():
     print(register_menu.build_menu())
     user_input = input("Veldu valmöguleika: ")
     if user_input == "1":
-       Make_and_save_employee()
+        emp_str = New_employee()
+        firstname, lastname, ssn, title , phonenumber, mobile, address = emp_str
+        emp_1 = Employee(firstname, lastname, ssn, title , phonenumber, mobile, address)
+        emp_1.save_employee()
         
     elif user_input == "2":
         print("WIP MENU, sendi þig aftur á Main menu")
@@ -101,8 +104,7 @@ def tmp_menu():
         first_menu()
 
 
-def New_employee_UI():
-    
+def New_employee():
     firstname = input("Fyrirnafn: ")
     lastname = input("Eftirnafn: ")
     ssn = input("Kennitala: ")
@@ -110,9 +112,9 @@ def New_employee_UI():
     phonenumber = int(input("Heimasími: "))
     mobile = int(input("Farsími: "))
     address = input("Heimilisfang: ")
-    emp_dict = {'first_name': firstname, 'last_name': lastname, 'SSN': ssn,'title': title ,'phone_number': phonenumber,'mobile': mobile,'address': address}
-
-    return emp_dict
+    emp_str = firstname, lastname, ssn, title , phonenumber, mobile, address
+    #return firstname, lastname, ssn, title , phonenumber, mobile, address
+    return emp_str
     
 def save_employee(emp_dict):
             with open('employeetest.csv', 'a', newline='') as csvfile:
