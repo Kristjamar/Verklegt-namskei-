@@ -83,7 +83,7 @@ def Make_and_save_employee():
     #Makes employee from user input and saves it in a csv file, the save function will be moved later.
     emp_str = New_employee()
     firstname, lastname, ssn, title , phonenumber, mobile, address = emp_str
-    emp_1 = Employee( firstname, lastname, ssn, title , phonenumber, mobile, address)
+    emp_1 = Employee(firstname, lastname, ssn, title , phonenumber, mobile, address)
     
     emp_1.save_employee()
 

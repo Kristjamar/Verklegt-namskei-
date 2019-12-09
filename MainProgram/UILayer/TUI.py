@@ -102,18 +102,16 @@ def tmp_menu():
 
 
 def New_employee_UI():
-    while True:
-        try:
-            firstname = input("Fyrirnafn: ")
-            lastname = input("Eftirnafn: ")
-            ssn = input("Kennitala: ")
-            title = input("Titill: ")
-            phonenumber = int(input("Heimasími: "))
-            mobile = int(input("Farsími: "))
-            address = input("Heimilisfang: ")
-            emp_dict = {'first_name': firstname, 'last_name': lastname, 'SSN': ssn,'title': title ,'phone_number': phonenumber,'mobile': mobile,'address': address}
-        except ValueError:
-            print("Innsláttarvilla")
+    
+    firstname = input("Fyrirnafn: ")
+    lastname = input("Eftirnafn: ")
+    ssn = input("Kennitala: ")
+    title = input("Titill: ")
+    phonenumber = int(input("Heimasími: "))
+    mobile = int(input("Farsími: "))
+    address = input("Heimilisfang: ")
+    emp_dict = {'first_name': firstname, 'last_name': lastname, 'SSN': ssn,'title': title ,'phone_number': phonenumber,'mobile': mobile,'address': address}
+
     return emp_dict
     
 def save_employee(emp_dict):

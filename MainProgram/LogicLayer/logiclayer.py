@@ -1,5 +1,5 @@
 import datetime
-
+from DataLayer.datalayer import Database
 
 class Flight():
     distance = None
@@ -175,16 +175,15 @@ class Pilot(Employee):
 
 class Get_Data():
 
-    def __init__(self, datalist, request):
-        self.datalist = datalist
+    def __init__(self, request):
+        self.datalist = None
         self.request = request
         self.DBsmith = None
 
     def get_emp_list(self):
         ''' Ignore the Error on Database please. To be fixed. - Haffi'''
-        self.request = 2
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_gata()
+        self.datalist = self.DBsmith.get_data()
         [print(row) for row in self.datalist]
 
     def get_specific_emp(self):

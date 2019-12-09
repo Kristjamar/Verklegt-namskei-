@@ -1,7 +1,11 @@
+from UILayer.UI import Menu
+from UILayer.UI import menu_builder
 
-def MainMenu():
-    pass
+def main():
 
-MainMenu()
+    menu_builder()
+    
+
+main()
 
 
