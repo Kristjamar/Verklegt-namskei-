@@ -1,4 +1,4 @@
-from LogicLayer.emp_test_breki import Reg_emp
+from LogicLayer.emp_test import Make_and_save_employee
 
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
@@ -64,7 +64,7 @@ def Reg_menu():
     print(register_menu.build_menu())
     user_input = input("Veldu valmöguleika: ")
     if user_input == "1":
-        Reg_emp()
+       Make_and_save_employee()
         
     elif user_input == "2":
         print("WIP MENU, sendi þig aftur á Main menu")
@@ -99,5 +99,33 @@ def tmp_menu():
         first_menu()
     elif user_input == BACK:
         first_menu()
+
+
+def New_employee_UI():
+    while True:
+        try:
+            firstname = input("Fyrirnafn: ")
+            lastname = input("Eftirnafn: ")
+            ssn = input("Kennitala: ")
+            title = input("Titill: ")
+            phonenumber = int(input("Heimasími: "))
+            mobile = int(input("Farsími: "))
+            address = input("Heimilisfang: ")
+            emp_dict = {'first_name': firstname, 'last_name': lastname, 'SSN': ssn,'title': title ,'phone_number': phonenumber,'mobile': mobile,'address': address}
+        except ValueError:
+            print("Innsláttarvilla")
+    return emp_dict
     
+def save_employee(emp_dict):
+            with open('employeetest.csv', 'a', newline='') as csvfile:
+                    fieldnames = ['first_name', 'last_name','SSN','title','phone_number','mobile','email','address']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                    writer.writerow(emp_dict)
+
 first_menu()
+
+#Make employee from user input
+#Send that information to the Employee class
+#Send the employee to csv from there
+#so Save_employee should be in the Employee class and take in all the information and make another dict for some reason
