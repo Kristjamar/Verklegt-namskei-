@@ -1,4 +1,4 @@
-from prufa.datalayer.datalayertest import Database
+from LogicLayer.logiclayer import Employee
 
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
@@ -64,7 +64,10 @@ def Reg_menu():
     print(register_menu.build_menu())
     user_input = input("Veldu valmöguleika: ")
     if user_input == "1":
-        Reg_emp()
+        emp_str = New_employee()
+        firstname, lastname, ssn, title , phonenumber, mobile, address = emp_str
+        emp_1 = Employee(firstname, lastname, ssn, title , phonenumber, mobile, address)
+        emp_1.save_employee()
         
     elif user_input == "2":
         print("WIP MENU, sendi þig aftur á Main menu")
@@ -99,5 +102,30 @@ def tmp_menu():
         first_menu()
     elif user_input == BACK:
         first_menu()
+
+
+def New_employee():
+    firstname = input("Fyrirnafn: ")
+    lastname = input("Eftirnafn: ")
+    ssn = input("Kennitala: ")
+    title = input("Titill: ")
+    phonenumber = int(input("Heimasími: "))
+    mobile = int(input("Farsími: "))
+    address = input("Heimilisfang: ")
+    emp_str = firstname, lastname, ssn, title , phonenumber, mobile, address
+    #return firstname, lastname, ssn, title , phonenumber, mobile, address
+    return emp_str
     
+def save_employee(emp_dict):
+            with open('employeetest.csv', 'a', newline='') as csvfile:
+                    fieldnames = ['first_name', 'last_name','SSN','title','phone_number','mobile','email','address']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                    writer.writerow(emp_dict)
+
 first_menu()
+
+#Make employee from user input
+#Send that information to the Employee class
+#Send the employee to csv from there
+#so Save_employee should be in the Employee class and take in all the information and make another dict for some reason
