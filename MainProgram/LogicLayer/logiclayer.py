@@ -228,7 +228,12 @@ class Get_Data():
         [print(row) for row in self.datalist]
 
     def get_specific_emp(self):
-        pass
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        for row in self.datalist:
+            if row["ssn"] == self.SSH:
+                return row
+        return False
 
     def get_pilots(self):
         pass
