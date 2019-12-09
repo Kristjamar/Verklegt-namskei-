@@ -146,12 +146,16 @@ class voyage(Flight):
         pass
 
 
-class Destination():
-    def __init__(self,distance = 0.0,city = "", country = "", emergencycontact = ""):
-        self.distance = distance
-        self.city = city
+class Destination:
+    def __init__(self, country, city, airport, flighttime, distance, emergencycontact, emergencynumber):
         self.country = country
+        self.city = city
+        self.airport = airport
+        self.flighttime = flighttime
+        self.distance = distance
         self.emergencycontact = emergencycontact
+        self.emergencynumber = emergencynumber
+        
     
     def updateEmergencyContact(self):
         pass

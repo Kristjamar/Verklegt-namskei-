@@ -91,7 +91,7 @@ def menu_builder():
         elif user_input == BACK:
             first_menu()
 
-    def tmp_menu():
+    def get_menu():
         user_input = input("Veldu valmöguleika: ")
         if user_input == "1":
             emplist = Get_Data(2)

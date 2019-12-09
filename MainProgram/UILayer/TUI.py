@@ -1,4 +1,4 @@
-from LogicLayer.logiclayer import Employee
+from LogicLayer.logiclayer import Employee , Get_Data
 
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
@@ -18,22 +18,23 @@ class Menu:
         self.how_many_options = how_many_options
 
     def build_menu(self):
-        print("#############################")
-        print("------{}------".format(self.title))
-        print("#############################")
-        print()
-        print("1.{}".format(self.option1))
-        print("2.{}".format(self.option2))
-        print("3.{}".format(self.option3))
+        print("##############################")
+        print("##{:^26}##".format(self.title))
+        print("##############################")
+        print("#                            #")
+        print("# 1.{:24} #".format(self.option1))
+        print("# 2.{:24} #".format(self.option2))
+        print("# 3.{:24} #".format(self.option3))
         if self.how_many_options >= 4:
-            print("4.{}".format(self.option4))
+            print("# 4.{:24} #".format(self.option4))
         if self.how_many_options >= 5:
-            print("5.{}".format(self.option5))
+            print("# 5.{:24} #".format(self.option5))
         if self.how_many_options >= 6:
-            print("6.{}".format(self.option6))
+            print("# 6.{:24} #".format(self.option6))
         if self.how_many_options == 7:
-            print("7.{}".format(self.option7))
-        print()
+            print("# 7.{:24} #".format(self.option7))
+        print("#                            #")
+        print("##############################")
         if self.title == "Main Menu":
             print("[Q]uit")
         elif self.how_many_options <=4:
@@ -42,17 +43,7 @@ class Menu:
         
         return ""
         '''Makes building a menu easier'''
-    def mainmenu(self):
-        print("#############################")
-        print("------{}------".format(self.title))
-        print("#############################")
-        print()
-        print("1.{}".format(self.option1))
-        print("2.{}".format(self.option2))
-        print("3.{}".format(self.option3))
-        print()
-        print("[Q]uit")
-        return ""
+
         
     # def title(self):
     #     print("#############################")
@@ -66,17 +57,19 @@ register_menu = Menu("Nýskrá", "Skrá starfsmann", "Skrá áfangastað", "Skr�
 listing_menu = Menu("Upplýsingar", "Birta starfsmenn", "Birta áfangastaði", "Birta vinnuferðir", "Birta tegund flugvéla","","","", 4)
 update_menu = Menu("Uppfæra", "Uppfæra starfsmenn", "Uppfæra áfangastaði", "Uppfæra vinnuferðir", "Uppfæra flugvél","","","", 4)
 register_emp_menu = Menu("Skrá starfsmann", "Fyrirnafn:(Jón)", "Eftirnafn:(Jónsson)", "Titill:(Flugstjóri)", "Heimanúmer:(4335858)","Farsími:(5812345)","Netfang:(Jonjonsson@nan.is)","Heimilisfang:(Bankastræti 5)", 7)
+
 def first_menu():
     main_menu.build_menu()
     user_input = input("Veldu valmöguleika: ")
+    
     if user_input == "1":
         Reg_menu()
     elif user_input == "2":
-        print(listing_menu.build_menu())
-        tmp_menu()
+        listing_menu.build_menu()
+        get_menu()
     elif user_input == "3":
-        print(update_menu.build_menu())
-        tmp_menu()
+        update_menu.build_menu()
+        get_menu()
     elif user_input == QUIT:
         exit
     else:
@@ -105,11 +98,12 @@ def Reg_menu():
     elif user_input == BACK:
         first_menu()
 
-def tmp_menu():
+def get_menu():
     user_input = input("Veldu valmöguleika: ")
     if user_input == "1":
-        print("WIP MENU, sendi þig aftur á Main menu")
-        first_menu()
+        emplist = Get_Data(2)
+        #2 is constant for Crew
+        emplist.get_emp_list()
     elif user_input == "2":
         print("WIP MENU, sendi þig aftur á Main menu")
         first_menu()
@@ -148,7 +142,6 @@ def save_employee(emp_dict):
                     writer.writerow(emp_dict)
 
 first_menu()
-
 #Make employee from user input
 #Send that information to the Employee class
 #Send the employee to csv from there
