@@ -45,18 +45,22 @@ update_menu = Menu("Uppfæra", "Uppfæra starfsmenn", "Uppfæra áfangastaði", 
 
 def first_menu():
     print(main_menu.mainmenu())
+    
     user_input = input("Veldu valmöguleika: ")
+    
     if user_input == "1":
         print(register_menu.build_menu())
         tmp_menu()
     elif user_input == "2":
         print(listing_menu.build_menu())
         tmp_menu()
-    elif user_input == "13":
+    elif user_input == "3":
         print(update_menu.build_menu())
         tmp_menu()
     elif user_input == QUIT:
         exit
+    else:
+
 
 def tmp_menu():
     user_input = input("Veldu valmöguleika: ")
