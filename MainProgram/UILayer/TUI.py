@@ -18,23 +18,23 @@ class Menu:
         self.how_many_options = how_many_options
 
     def build_menu(self):
-        print("##############################")
-        print("##{:^26}##".format(self.title))
-        print("##############################")
-        print("#                            #")
-        print("# 1.{:24} #".format(self.option1))
-        print("# 2.{:24} #".format(self.option2))
-        print("# 3.{:24} #".format(self.option3))
+        print("########################################")
+        print("##{:^36}##".format(self.title))
+        print("########################################")
+        print("#                                      #")
+        print("# 1.{:34} #".format(self.option1))
+        print("# 2.{:34} #".format(self.option2))
+        print("# 3.{:34} #".format(self.option3))
         if self.how_many_options >= 4:
-            print("# 4.{:24} #".format(self.option4))
+            print("# 4.{:34} #".format(self.option4))
         if self.how_many_options >= 5:
-            print("# 5.{:24} #".format(self.option5))
+            print("# 5.{:34} #".format(self.option5))
         if self.how_many_options >= 6:
-            print("# 6.{:24} #".format(self.option6))
+            print("# 6.{:34} #".format(self.option6))
         if self.how_many_options == 7:
-            print("# 7.{:24} #".format(self.option7))
-        print("#                            #")
-        print("##############################")
+            print("# 7.{:34} #".format(self.option7))
+        print("#                                      #")
+        print("########################################")
         if self.title == "Main Menu":
             print("[Q]uit")
         elif self.how_many_options <=4:
@@ -152,12 +152,6 @@ def New_employee():
     #return firstname, lastname, ssn, title , phonenumber, mobile, address
     return emp_str
     
-def save_employee(emp_dict):
-            with open('employeetest.csv', 'a', newline='') as csvfile:
-                    fieldnames = ['first_name', 'last_name','SSN','title','phone_number','mobile','email','address']
-                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-                    writer.writerow(emp_dict)
 
 def New_aircraft():
         aircraft_type = input("aircraft_type: ")
@@ -169,12 +163,6 @@ def New_aircraft():
         #return aircraft_type, num_seats, manufacturer, name_of_aircraft
         return airc_str
 
-def save_aircraft(self):
-            with open('employeetest.csv', 'a', newline='') as csvfile:
-                    fieldnames = ['aircraft_type', 'num_seats','manufacturer','name_of_aircraft']
-                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-                    writer.writerow(Aircraft.store_aircraft(self))
 
 first_menu()
 #Make employee from user input
