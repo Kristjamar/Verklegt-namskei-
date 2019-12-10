@@ -171,7 +171,7 @@ class Aircraft():
         self.manufacturer = manufacturer
         self.name_of_aircraft = name_of_aircraft
 
-    def New_aircraft():
+    def New_aircraft(self):
         ''' 
     Þarf að gera fall sem býr til nýja Flugvél með öllum upplýsingunum sem það tekur inn í __init__() 
     það væri best að láta þetta fall sækja csv frá Datalayer. Fyrst samt að prufa í testskjali.
@@ -230,6 +230,7 @@ class Get_Data:
         ''' Ignore the Error on Database please. To be fixed. - Haffi'''
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
+        
         return self.datalist
 
     def get_specific_emp(self):
