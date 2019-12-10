@@ -108,9 +108,10 @@ def get_menu():
         #2 is constant for Crew
         empprinter = emplist.get_emp_list()
         print("")
+        print("##############################")
         for row in empprinter:
             for i in row:
-                print(row[i])
+                print("|  {:25} | ".format(row[i]))
             print("##############################")
         get_sub_menu()
 
@@ -157,9 +158,8 @@ def New_aircraft():
 
 
 def get_sub_menu():
-    print("")
     print("1. Finna starfsmann")
-    print("2. Finna flugmann")
+    print("2. Finna flugmenn")
     print("3. Finna flugþjón")
     print("")
     user_input_sec = input("Veldu valmöguleika: ")
@@ -173,6 +173,15 @@ def get_sub_menu():
             print("Enginn starfsmaður með þessa kennitölu")
         else:
             print(emp_spec_printer)
+    
+    if user_input_sec == "2":
+        emp_pilots = Get_Data(2)
+        emp_pilots_printer = emp_pilots.get_pilots()
+        print("##############################")
+        for row in emp_pilots_printer:
+            for i in row:
+                print("|  {:25} | ".format(row[i]))
+            print("##############################")
 
 first_menu()
 #Make employee from user input

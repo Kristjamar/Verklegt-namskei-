@@ -241,7 +241,13 @@ class Get_Data:
         return False
 
     def get_pilots(self):
-        pass
+        templist = []
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        for row in self.datalist:
+            if row["role"] == "Pilot" or row["role"] == "Captain":
+                templist.append(row)
+        return templist
 
     def get_flightattendants(self):
         pass
