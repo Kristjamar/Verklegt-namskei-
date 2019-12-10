@@ -183,6 +183,15 @@ def get_sub_menu():
                 print("|  {:25} | ".format(row[i]))
             print("##############################")
 
+    if user_input_sec == "3":
+        emp_cabin = Get_Data(2)
+        emp_cabin_printer = emp_cabin.get_flightattendants()
+        print("##############################")
+        for row in emp_cabin_printer:
+            for i in row:
+                print("|  {:25} | ".format(row[i]))
+            print("##############################")
+
 first_menu()
 #Make employee from user input
 #Send that information to the Employee class
