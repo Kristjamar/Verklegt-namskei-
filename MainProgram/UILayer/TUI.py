@@ -107,7 +107,8 @@ def get_menu():
         emplist = Get_Data(2)
         #2 is constant for Crew
         empprinter = emplist.get_emp_list()
-        [print(row) for row in empprinter]
+        
+        # [print(row) for row in empprinter]
         print("")
         print("1. Finna starfsmann")
         print("2. Leita eftir dagsetningu")
