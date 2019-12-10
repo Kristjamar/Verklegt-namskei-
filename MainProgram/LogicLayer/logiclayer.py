@@ -219,7 +219,6 @@ class Pilot(Employee):
     
 
 class Get_Data:
-
     def __init__(self, request, SSN=None):
         self.SSN = SSN
         self.datalist = None
@@ -227,10 +226,8 @@ class Get_Data:
         self.DBsmith = None
 
     def get_emp_list(self):
-        ''' Ignore the Error on Database please. To be fixed. - Haffi'''
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
-        
         return self.datalist
 
     def get_specific_emp(self):
@@ -246,7 +243,7 @@ class Get_Data:
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
         for row in self.datalist:
-            if row["role"] == "Pilot" or row["role"] == "Captain":
+            if row["role"] == "Pilot":
                 templist.append(row)
         return templist
 

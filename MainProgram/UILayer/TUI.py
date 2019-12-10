@@ -159,8 +159,8 @@ def New_aircraft():
 
 def get_sub_menu():
     print("1. Finna starfsmann")
-    print("2. Finna flugmenn")
-    print("3. Finna flugþjón")
+    print("2. Birta flugmenn")
+    print("3. Birta flugþjóna")
     print("")
     user_input_sec = input("Veldu valmöguleika: ")
     print("")
