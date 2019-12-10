@@ -230,6 +230,7 @@ class Get_Data:
         ''' Ignore the Error on Database please. To be fixed. - Haffi'''
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
+        
         return self.datalist
 
     def get_specific_emp(self):

@@ -107,22 +107,13 @@ def get_menu():
         emplist = Get_Data(2)
         #2 is constant for Crew
         empprinter = emplist.get_emp_list()
-        
-        # [print(row) for row in empprinter]
         print("")
-        print("1. Finna starfsmann")
-        print("2. Leita eftir dagsetningu")
-        user_input_sec = input("Veldu valmöguleika: ")
-        print("")
-        if user_input_sec == "1":
-            ssn_temp = input("Sladu inn kennitolu: ")
-            print("")
-            emp_spec = Get_Data(2, ssn_temp)
-            emp_spec_printer = emp_spec.get_specific_emp()
-            if emp_spec_printer == False:
-                print("Enginn starfsmaður með þessa kennitölu")
-            else:
-                print(emp_spec_printer)
+        for row in empprinter:
+            for i in row:
+                print("|  {:25} | ".format(row[i]))
+            print("##############################")
+        get_sub_menu()
+
     elif user_input == "2":
         print("WIP MENU, sendi þig aftur á Main menu")
         first_menu()
@@ -164,6 +155,24 @@ def New_aircraft():
         #return aircraft_type, num_seats, manufacturer, name_of_aircraft
         return airc_str
 
+
+def get_sub_menu():
+    print("")
+    print("1. Finna starfsmann")
+    print("2. Finna flugmann")
+    print("3. Finna flugþjón")
+    print("")
+    user_input_sec = input("Veldu valmöguleika: ")
+    print("")
+    if user_input_sec == "1":
+        ssn_temp = input("Sladu inn kennitolu: ")
+        print("")
+        emp_spec = Get_Data(2, ssn_temp)
+        emp_spec_printer = emp_spec.get_specific_emp()
+        if emp_spec_printer == False:
+            print("Enginn starfsmaður með þessa kennitölu")
+        else:
+            print(emp_spec_printer)
 
 first_menu()
 #Make employee from user input

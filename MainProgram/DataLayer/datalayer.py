@@ -18,7 +18,7 @@ class Database():
         elif self.request == Crew:
             self.filename = "Crew.csv"
         elif self.request == Destinations:
-            self.filename = "Destiantions.csv"
+            self.filename = "Destinations.csv"
         elif self.request == PastFlights:
             self.filename = "PastFlights.csv"
         elif self.request == UpcomingFlights:
