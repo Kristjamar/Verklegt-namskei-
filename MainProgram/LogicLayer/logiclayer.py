@@ -241,11 +241,12 @@ class Pilot(Employee):
     
 
 class Get_Data:
-    def __init__(self, request, SSN=None):
+    def __init__(self, request, SSN=None, licence=None):
         self.SSN = SSN
         self.datalist = None
         self.request = request
         self.DBsmith = None
+        self.licence = licence
 
     def get_emp_list(self):
         self.DBsmith = Database(self.request)
@@ -285,10 +286,22 @@ class Get_Data:
         pass
 
     def get_emp_not_working(self):
-        pass
+        templist = []
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        for row in self.datalist:
+            if row["working"] == "Not Working":
+                templist.append(row)
+        return templist
 
     def get_emp_working(self):
-        pass
+        templist = []
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        for row in self.datalist:
+            if row["working"] == "Working":
+                templist.append(row)
+        return templist
 
     def get_emp_destination(self):
         pass
@@ -306,7 +319,16 @@ class Get_Data:
         pass
 
     def get_pilots_from_airtype(self):
-        pass
+        templist = []
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        for row in self.datalist:
+            if row["licence"] == self.licence:
+                templist.append(row)
+        if templist:
+            return templist
+        else:
+            return False
 
     def get_nan_aircrafts(self):
         pass
