@@ -179,9 +179,6 @@ def get_sub_menu():
     print("1. Finna starfsmann")
     print("2. Birta flugmenn")
     print("3. Birta flugþjóna")
-    print("4. Birta starfsmenn á vakt")
-    print("5. Birta starfsmenn ekki á vakt")
-    print("6. Finna flugmenn eftir flugvélategund")
     print("")
     user_input_sec = input("Veldu valmöguleika: ")
     print("")
@@ -212,37 +209,6 @@ def get_sub_menu():
             for i in row:
                 print("|  {:25} | ".format(row[i]))
             print("##############################")
-
-    if user_input_sec == "4":
-        emp_working = Get_Data(2)
-        emp_working_printer = emp_working.get_emp_working()
-        print("##############################")
-        for row in emp_working_printer:
-            for i in row:
-                print("|  {:25} | ".format(row[i]))
-            print("##############################")
-
-    if user_input_sec == "5":
-        emp_notworking = Get_Data(2)
-        emp_notworking_printer = emp_notworking.get_emp_not_working()
-        print("##############################")
-        for row in emp_notworking_printer:
-            for i in row:
-                print("|  {:25} | ".format(row[i]))
-            print("##############################")
-
-    if user_input_sec == "6":
-        licence_temp = input("Sladu inn flugvelategund: ")
-        print("")
-        pilots_licence = Get_Data(2,None,licence_temp)
-        pilots_licence_printer = pilots_licence.get_pilots_from_airtype()
-        if pilots_licence_printer == False:
-            print("Enginn flugmaður með leyfi á þessa tilteknu vél")
-        else:
-            for row in pilots_licence_printer:
-                for i in row:
-                    print("|  {:25} | ".format(row[i]))
-                print("##############################")
 
 first_menu()
 #Make employee from user input

@@ -1,7 +1,7 @@
-ID,Location,Airport,Flight-time,Distance,Contact,Emergency Number
-LYR,Longyearbyean,Svalbard airport,4klst,3000km,Kristján Mar,5554444
-GOH,Nuuk,Nuuk Airport,5klst,4000km,Haflidi Stefansson,5556666
-KUS,Kulusuk,Kulusuk Airport,4klst,3000km,Breki Hardarsson,5559999
-FAE,Thorshavn,Vágar Airport,2klst,2000km,Runar Örn Fridriksson,5551111
-LWK,Tingwall,Tingwall Airport,4klst,4000km,Arnar Mar Brynjarsson,5559191
-KEF,Keflavik,Keflavik Airport,0klst,0km,Gylfi Thor,5885522
+ID,Áfangastaður, Flugvöllur, Flugtími, Fjarlægt frá ÍSL, Tengiliður, Neyðarnúmer
+LYR,Longyearbyean
+GOH,Nuuk
+KUS,Kulusuk
+FAE,Thorshavn
+LWK,Tingwall
+KEF,Keflavik
