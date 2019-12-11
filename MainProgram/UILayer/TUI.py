@@ -60,12 +60,12 @@ register_emp_menu = Menu("Skrá starfsmann", "Fyrirnafn:(Jón)", "Eftirnafn:(Jó
 
 def first_menu():
     main_menu.build_menu()
+    print("")
     user_input = input("Veldu valmöguleika: ")
     
     if user_input == "1":
         Reg_menu()
     elif user_input == "2":
-        listing_menu.build_menu()
         get_menu()
     elif user_input == "3":
         update_menu.build_menu()
@@ -77,6 +77,7 @@ def first_menu():
 
 def Reg_menu():
     print(register_menu.build_menu())
+    print("")
     user_input = input("Veldu valmöguleika: ")
     if user_input == "1":
         emp_str = New_employee()
@@ -106,6 +107,8 @@ def Reg_menu():
         first_menu()
 
 def get_menu():
+    print(listing_menu.build_menu())
+    print("")
     user_input = input("Veldu valmöguleika: ")
     if user_input == "1":
         emplist = Get_Data(2)
@@ -176,10 +179,15 @@ def New_destination():
 
 
 def get_sub_menu():
+    print("")
     print("1. Finna starfsmann")
     print("2. Birta flugmenn")
     print("3. Birta flugþjóna")
+    print("4. Birta starfsmenn á vakt")
+    print("5. Birta starfsmenn ekki á vakt")
+    print("6. Finna flugmenn eftir flugvélategund")
     print("")
+    print('   [B]ack       [M]ain_menu')
     user_input_sec = input("Veldu valmöguleika: ")
     print("")
     if user_input_sec == "1":
@@ -191,8 +199,11 @@ def get_sub_menu():
             print("Enginn starfsmaður með þessa kennitölu")
         else:
             print(emp_spec_printer)
+        print()
+        input("Press ENTER to continue.. ")
+        get_sub_menu()
     
-    if user_input_sec == "2":
+    elif user_input_sec == "2":
         emp_pilots = Get_Data(2)
         emp_pilots_printer = emp_pilots.get_pilots()
         print("##############################")
@@ -200,8 +211,11 @@ def get_sub_menu():
             for i in row:
                 print("|  {:25} | ".format(row[i]))
             print("##############################")
+        print()
+        input("Press ENTER to continue.. ")
+        get_sub_menu()
 
-    if user_input_sec == "3":
+    elif user_input_sec == "3":
         emp_cabin = Get_Data(2)
         emp_cabin_printer = emp_cabin.get_flightattendants()
         print("##############################")
@@ -209,6 +223,54 @@ def get_sub_menu():
             for i in row:
                 print("|  {:25} | ".format(row[i]))
             print("##############################")
+        print()
+        input("Press ENTER to continue.. ")
+        get_sub_menu()
+
+    elif user_input_sec == "4":
+        emp_working = Get_Data(2)
+        emp_working_printer = emp_working.get_emp_working()
+        print("##############################")
+        for row in emp_working_printer:
+            for i in row:
+                print("|  {:25} | ".format(row[i]))
+            print("##############################")
+        print()
+        input("Press ENTER to continue.. ")
+        get_sub_menu()
+
+    elif user_input_sec == "5":
+        emp_notworking = Get_Data(2)
+        emp_notworking_printer = emp_notworking.get_emp_not_working()
+        print("##############################")
+        for row in emp_notworking_printer:
+            for i in row:
+                print("|  {:25} | ".format(row[i]))
+            print("##############################")
+        print()
+        input("Press ENTER to continue.. ")
+        get_sub_menu()
+
+    elif user_input_sec == "6":
+        licence_temp = input("Sladu inn flugvelategund: ")
+        print("")
+        pilots_licence = Get_Data(2,None,licence_temp)
+        pilots_licence_printer = pilots_licence.get_pilots_from_airtype()
+        if pilots_licence_printer == False:
+            print("Enginn flugmaður með leyfi á þessa tilteknu vél")
+        else:
+            for row in pilots_licence_printer:
+                for i in row:
+                    print("|  {:25} | ".format(row[i]))
+                print("##############################")
+        print()
+        input("Press ENTER to continue.. ")
+        get_sub_menu()
+
+    elif user_input_sec == MAINMENU:
+        first_menu()
+    elif user_input_sec == BACK:
+        get_menu()
 
 first_menu()
 #Make employee from user input
