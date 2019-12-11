@@ -254,12 +254,16 @@ class Get_Data:
         return self.datalist
 
     def get_specific_emp(self):
+        templist = []
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
         for row in self.datalist:
             if row["ssn"] == self.SSN:
-                return row
-        return False
+                templist.append(row)
+        if templist:
+            return templist
+        else:
+            return False
 
     def get_pilots(self):
         templist = []
@@ -278,9 +282,6 @@ class Get_Data:
             if row["role"] == "Cabincrew":
                 templist.append(row)
         return templist
-
-    def get_voyage_day_n_week(self):
-        pass
 
     def get_destinations(self):
         self.DBsmith = Database(self.request)
@@ -311,7 +312,12 @@ class Get_Data:
     def get_aircraft_pilot_licence(self):
         pass
 
-    def get_voyage_status(self):
+    def get_voyage(self):
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        return self.datalist
+
+    def get_voyage_emp_week(self):
         pass
 
     def get_voyage_ID(self):

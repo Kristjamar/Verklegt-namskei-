@@ -5,6 +5,7 @@ Crew = 2
 Destinations = 3
 PastFlights = 4
 UpcomingFlights = 5
+Voyage = 6
 
 class Database():
 
@@ -23,6 +24,8 @@ class Database():
             self.filename = "PastFlights.csv"
         elif self.request == UpcomingFlights:
             self.filename = "UpcomingFlights.csv"
+        elif self.request == Voyage:
+            self.filename = "Voyage.csv"
         
     def get_data(self):               
         try:

@@ -115,16 +115,16 @@ def get_menu():
         #2 is constant for Crew
         empprinter = emplist.get_emp_list()
         print("")
-        print("##############################")
+        print("##################################################")
         for row in empprinter:
             for i in row:
-                print("|  {:25} | ".format(row[i]))
-            print("##############################")
+                print("|  {:17}: {:26} | ".format(i,row[i]))
+            print("##################################################")
+        print()
         get_sub_menu()
 
     elif user_input == "2":
-        print("WIP MENU, sendi þig aftur á Main menu")
-        first_menu()
+        get_menu_destinations()
     elif user_input == "3":
         print("WIP MENU, sendi þig aftur á Main menu")
         first_menu()
@@ -135,7 +135,7 @@ def get_menu():
     elif user_input == MAINMENU:
         first_menu()
     elif user_input == BACK:
-        first_menu()
+        first_menu())
 
 
 def New_employee():
@@ -198,7 +198,12 @@ def get_sub_menu():
         if emp_spec_printer == False:
             print("Enginn starfsmaður með þessa kennitölu")
         else:
-            print(emp_spec_printer)
+            print("##################################################")
+            for row in emp_spec_printer:
+                for i in row:
+                    print("|  {:17}: {:26} | ".format(i,row[i]))
+                print("##################################################")
+            print()
         print()
         input("Press ENTER to continue.. ")
         get_sub_menu()
@@ -206,11 +211,11 @@ def get_sub_menu():
     elif user_input_sec == "2":
         emp_pilots = Get_Data(2)
         emp_pilots_printer = emp_pilots.get_pilots()
-        print("##############################")
+        print("##################################################")
         for row in emp_pilots_printer:
             for i in row:
-                print("|  {:25} | ".format(row[i]))
-            print("##############################")
+                print("|  {:17}: {:26} | ".format(i,row[i]))
+            print("##################################################")
         print()
         input("Press ENTER to continue.. ")
         get_sub_menu()
@@ -218,11 +223,11 @@ def get_sub_menu():
     elif user_input_sec == "3":
         emp_cabin = Get_Data(2)
         emp_cabin_printer = emp_cabin.get_flightattendants()
-        print("##############################")
+        print("##################################################")
         for row in emp_cabin_printer:
             for i in row:
-                print("|  {:25} | ".format(row[i]))
-            print("##############################")
+                print("|  {:17}: {:26} | ".format(i,row[i]))
+            print("##################################################")
         print()
         input("Press ENTER to continue.. ")
         get_sub_menu()
@@ -230,11 +235,11 @@ def get_sub_menu():
     elif user_input_sec == "4":
         emp_working = Get_Data(2)
         emp_working_printer = emp_working.get_emp_working()
-        print("##############################")
+        print("##################################################")
         for row in emp_working_printer:
             for i in row:
-                print("|  {:25} | ".format(row[i]))
-            print("##############################")
+                print("|  {:17}: {:26} | ".format(i,row[i]))
+            print("##################################################")
         print()
         input("Press ENTER to continue.. ")
         get_sub_menu()
@@ -242,11 +247,11 @@ def get_sub_menu():
     elif user_input_sec == "5":
         emp_notworking = Get_Data(2)
         emp_notworking_printer = emp_notworking.get_emp_not_working()
-        print("##############################")
+        print("##################################################")
         for row in emp_notworking_printer:
             for i in row:
-                print("|  {:25} | ".format(row[i]))
-            print("##############################")
+                print("|  {:17}: {:26} | ".format(i,row[i]))
+            print("##################################################")
         print()
         input("Press ENTER to continue.. ")
         get_sub_menu()
@@ -259,10 +264,11 @@ def get_sub_menu():
         if pilots_licence_printer == False:
             print("Enginn flugmaður með leyfi á þessa tilteknu vél")
         else:
+            print("##################################################")
             for row in pilots_licence_printer:
                 for i in row:
-                    print("|  {:25} | ".format(row[i]))
-                print("##############################")
+                    print("|  {:17}: {:26} | ".format(i,row[i]))
+                print("##################################################")
         print()
         input("Press ENTER to continue.. ")
         get_sub_menu()
@@ -271,6 +277,30 @@ def get_sub_menu():
         first_menu()
     elif user_input_sec == BACK:
         get_menu()
+
+def get_menu_destinations():
+    destinations = Get_Data(3)
+    destinations_printer = destinations.get_destinations()
+    print("##################################################")
+    for row in destinations_printer:
+        for i in row:
+            print("|  {:17}: {:26} | ".format(i,row[i]))
+        print("##################################################")
+    print()
+    input("Press ENTER to continue.. ")
+    get_menu()
+
+def get_voyage():
+    voyage = Get_Data(6)
+    voyage_printer = voyage.get_voyage()
+    print("##################################################")
+    for row in voyage_printer:
+        for i in row:
+            print("|  {:17}: {:26} | ".format(i,row[i]))
+        print("##################################################")
+    print()
+    input("Press ENTER to continue.. ")
+    get_menu()
 
 first_menu()
 #Make employee from user input
