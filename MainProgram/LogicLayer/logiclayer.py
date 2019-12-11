@@ -40,7 +40,7 @@ class Flight():
 
 
 class Employee:
-    def __init__(self, firstname, lastname, ssn, title, phonenumber, mobile, address, working="no"):
+    def __init__(self, firstname, lastname, ssn, title, phonenumber, mobile, address, working="Not Working", arriving="N/A"):
         self.firstname = firstname
         self.lastname = lastname
         self.ssn = ssn
@@ -59,12 +59,12 @@ class Employee:
         pass
 
     def store_employee(self):
-         emp = {'first_name': self.firstname, 'last_name': self.lastname, 'SSN': self.ssn,'title': self.title ,'phone_number': self.phonenumber,'mobile': self.mobile,'email': self.email_str,'address': self.address, 'working': 'no'}       
+         emp = {'first_name': self.firstname, 'last_name': self.lastname, 'SSN': self.ssn,'title': self.title ,'phone_number': self.phonenumber,'mobile': self.mobile,'email': self.email_str,'address': self.address, 'working': 'no', 'arriving': 'N/A'}       
          return emp
 
     def save_employee(self):
             with open('employeetest.csv', 'a', newline='') as csvfile:
-                    fieldnames = ['first_name', 'last_name','SSN','title','phone_number','mobile','email','address','working']
+                    fieldnames = ['first_name', 'last_name','SSN','title','phone_number','mobile','email','address','working','arriving']
                     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
                     writer.writerow(Employee.store_employee(self))
