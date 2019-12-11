@@ -1,4 +1,4 @@
-from LogicLayer.logiclayer import Employee , Aircraft, Get_Data
+from LogicLayer.logiclayer import Employee , Aircraft, Get_Data, Destination
 
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
@@ -85,11 +85,15 @@ def Reg_menu():
         emp_1.save_employee()
         
     elif user_input == "2":
-        print("WIP MENU, sendi þig aftur á Main menu")
-        first_menu()
+        dest_str = New_destination()
+        country, city, airport, flighttime, distance, emergencycontact, emergencynumber = dest_str
+        dest_1 = Destination(country, city, airport, flighttime, distance, emergencycontact, emergencynumber)
+        dest_1.save_destination()
+
     elif user_input == "3":
         print("WIP MENU, sendi þig aftur á Main menu")
         first_menu()
+
     elif user_input == "4":
         airc_str = New_aircraft()
         aircraft_type, num_seats, manufacturer, name_of_aircraft = airc_str
@@ -155,6 +159,20 @@ def New_aircraft():
         airc_str = aircraft_type, num_seats, manufacturer, name_of_aircraft
         #return aircraft_type, num_seats, manufacturer, name_of_aircraft
         return airc_str
+
+def New_destination():
+        country = input("country: ")
+        city = input("city: ")
+        airport = input("airport: ")
+        flighttime = input("flighttime: ")
+        distance = input("distance: ")
+        emergencycontact = input("emergencycontact: ")
+        emergencynumber = input("emergencynumber: ")
+
+        
+        dest_str = country, city, airport, flighttime, distance, emergencycontact, emergencynumber
+       
+        return dest_str
 
 
 def get_sub_menu():

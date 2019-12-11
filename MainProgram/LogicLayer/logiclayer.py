@@ -155,13 +155,35 @@ class Destination:
         self.distance = distance
         self.emergencycontact = emergencycontact
         self.emergencynumber = emergencynumber
-        
+
+    def New_destination():
+        country = input("country: ")
+        city = input("city: ")
+        airport = input("airport: ")
+        flighttime = input("flighttime: ")
+        distance = input("distance: ")
+        emergencycontact = input("emergencycontact: ")
+        emergencynumber = input("emergencynumber: ")
+
+        dest_str = country, city, airport, flighttime, distance, emergencycontact, emergencynumber
+        return dest_str  
     
     def updateEmergencyContact(self):
         pass
     
     def __str__(self):
         pass
+
+    def store_destination(self):
+         dest = {'country': self.country, 'city': self.city, 'airport': self.airport,'flighttime': self.flighttime, 'distance': self.distance, 'emergencycontact': self.emergencycontact, 'emergencynumber': self.emergencynumber}       
+         return dest
+
+    def save_destination(self):
+            with open('employeetest.csv', 'a', newline='') as csvfile:
+                    fieldnames = ['country', 'city','airport','flighttime', 'distance', 'emergencycontact', 'emergencynumber']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                    writer.writerow(Destination.store_destination(self))
 
 
 class Aircraft():
