@@ -199,11 +199,7 @@ class Aircraft():
         storing.create_data()
 
     def save_aircraft(self):
-<<<<<<< HEAD
-            Database.save_aircraft()
-=======
         pass
->>>>>>> c002b298afb32895994adb95b7180cfb12722e99
 
 
 class Pilot(Employee):

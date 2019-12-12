@@ -9,7 +9,7 @@ Voyage = 6
 
 class Database():
 
-    def __init__(self, request, append_dict):
+    def __init__(self, request, append_dict={}):
         self.datalist = []
         self.fieldnames = None
         self.reader = None
@@ -29,7 +29,7 @@ class Database():
         elif self.request == Voyage:
             self.filename = "./CSV/Voyage.csv"
         
-    def get_data(self):               
+    def get_csv(self):               
         try:
             with open(self.filename, 'r', newline='') as self.csvfile:
                 self.reader = csv.reader(self.csvfile, skipinitialspace=True)

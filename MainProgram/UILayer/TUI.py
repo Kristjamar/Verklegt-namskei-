@@ -52,16 +52,16 @@ class Menu:
     #     print()
     #     return ""
 
-main_menu = Menu("Main Menu", "Búa til", "Upplýsingar", "Uppfæra","","","","", 3)
-register_menu = Menu("Nýskrá", "Skrá starfsmann", "Skrá áfangastað", "Skrá vinnuferð", "Skrá flugvél","","","", 4)
-listing_menu = Menu("Upplýsingar", "Birta starfsmenn", "Birta áfangastaði", "Birta vinnuferðir", "Birta tegund flugvéla","","","", 4)
-update_menu = Menu("Uppfæra", "Uppfæra starfsmenn", "Uppfæra áfangastaði", "Uppfæra vinnuferðir", "Uppfæra flugvél","","","", 4)
-register_emp_menu = Menu("Skrá starfsmann", "Fyrirnafn:(Jón)", "Eftirnafn:(Jónsson)", "Titill:(Flugstjóri)", "Heimanúmer:(4335858)","Farsími:(5812345)","Netfang:(Jonjonsson@nan.is)","Heimilisfang:(Bankastræti 5)", 7)
+main_menu = Menu("Main Menu", "Register", "Information", "Update info","","","","", 3)
+register_menu = Menu("Register", "Register employee", "Register destination", "Register voyage", "Register aircraft","","","", 4)
+listing_menu = Menu("Information", "Show employees", "Show destinations", "Show voyages", "Show aircraft","","","", 4)
+update_menu = Menu("Update info", "Update employee", "Update destinations", "Update voyages", "Update aircraft","","","", 4)
+register_emp_menu = Menu("Register Employee", "SSN:(0808693369)""First name:(Jón)", "Last name:(Jónsson)",  "Role: (Pilot)","Rank: (Captain)","Licence: (NAFokkerF100/(N/A))""Address:(Bankastræti 5)", "Mobile:(5812345)","Email:(Jónjónsson@nan.is)","Address:(Bankastræti 5)", 7)
 
 def first_menu():
     main_menu.build_menu()
     print("")
-    user_input = input("Veldu valmöguleika: ")
+    user_input = input("Choose an option: ")
     
     if user_input == "1":
         Reg_menu()
@@ -78,7 +78,7 @@ def first_menu():
 def Reg_menu():
     print(register_menu.build_menu())
     print("")
-    user_input = input("Veldu valmöguleika: ")
+    user_input = input("Choose an option: ")
     if user_input == "1":
         emp_str = New_employee()
         firstname, lastname, ssn, title , phonenumber, mobile, address = emp_str
@@ -106,7 +106,7 @@ def Reg_menu():
 def get_menu():
     print(listing_menu.build_menu())
     print("")
-    user_input = input("Veldu valmöguleika: ")
+    user_input = input("Choose an option: ")
     if user_input == "1":
         emplist = Get_Data(2)
         #2 is constant for Crew
@@ -140,38 +140,52 @@ def get_menu():
 def New_employee():
     
     register_emp_menu.build_menu()
-    firstname = input("Fyrirnafn: ")
-    if firstname == CANCEL:
-        first_menu()
-        return
-    lastname = input("Eftirnafn: ")
-    if lastname == CANCEL:
-        first_menu()
-        return
-    ssn = input("Kennitala: ")
+    
+    ssn = input("SSN: ")
     if ssn == CANCEL:
         first_menu()
         return
-    title = input("Titill: ")
-    if title == CANCEL:
+    
+    firstname = input("First name: ")
+    if firstname == CANCEL:
         first_menu()
         return
-    phonenumber = int(input("Heimasími: "))
-    if phonenumber == CANCEL:
+    
+    lastname = input("Last name: ")
+    if lastname == CANCEL:
         first_menu()
         return
-    mobile = int(input("Farsími: "))
-    if mobile == CANCEL:
+    
+    role = input("Role: ")
+    if role == CANCEL:
+        first_menu()
         return
-    address = input("Heimilisfang: ")
+    
+    rank = input("Rank: ")
+    if rank == CANCEL:
+        first_menu()
+        return
+    
+    licence = input("Licence: ")
+    if licence == CANCEL:
+        first_menu()
+        return
+    elif licence == "":
+        licence = "N/A"
+    
+    address = input("Address: ")
     if address == CANCEL:
         first_menu()
         return
-    emp_str = firstname, lastname, ssn, title , phonenumber, mobile, address
-
-    #return firstname, lastname, ssn, title , phonenumber, mobile, address
     
-    return emp_str
+    mobile = int(input("Mobile: "))
+    if mobile == CANCEL:
+        return
+
+    new_emp = Employee(ssn, firstname, lastname, role, rank, licence, address, mobile)
+    new_emp.save_employee()
+    
+    Reg_menu()
     
 
 def New_aircraft():
@@ -231,7 +245,7 @@ def get_sub_menu():
     print("6. Finna flugmenn eftir flugvélategund")
     print("")
     print('   [B]ack       [M]ain_menu')
-    user_input_sec = input("Veldu valmöguleika: ")
+    user_input_sec = input("Choose an option: ")
     print("")
     if user_input_sec == "1":
         ssn_temp = input("Sladu inn kennitolu: ")
