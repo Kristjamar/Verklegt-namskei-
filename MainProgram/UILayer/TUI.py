@@ -83,22 +83,20 @@ def Reg_menu():
         New_employee()
         
     elif user_input == "2":
-        dest_str = New_destination()
-        country, city, airport, flighttime, distance, emergencycontact, emergencynumber = dest_str
-        dest_1 = Destination(country, city, airport, flighttime, distance, emergencycontact, emergencynumber)
-        dest_1.save_destination()
+        New_destination()
 
     elif user_input == "3":
-        print("WIP MENU, sendi þig aftur á Main menu")
-        first_menu()
+        New_voyage()
 
     elif user_input == "4":
         New_aircraft()
     
     elif user_input == MAINMENU:
         first_menu()
+        
     elif user_input == BACK:
         first_menu()
+
 
 def get_menu():
     print(listing_menu.build_menu())
@@ -197,12 +195,12 @@ def New_aircraft():
     Reg_menu()
 
 def New_destination():
-        country = input("country: ")
-        if country == CANCEL:
+        short = input("ID: ")
+        if short == CANCEL:
             first_menu()
             return
-        city = input("city: ")
-        if city == CANCEL:
+        location = input("location: ")
+        if location == CANCEL:
             first_menu()
             return
         airport = input("airport: ")
@@ -227,9 +225,10 @@ def New_destination():
             return
 
         
-        dest_str = country, city, airport, flighttime, distance, emergencycontact, emergencynumber
-       
-        return dest_str
+        dest_str = Destination(short, location, airport, flighttime, distance, emergencycontact, emergencynumber)
+        dest_str.store_destination()
+
+        Reg_menu()
 
 
 def get_sub_menu():

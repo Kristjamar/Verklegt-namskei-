@@ -89,27 +89,18 @@ class flight_attendant(Employee):
         pass
 
 
-class voyage(Flight):
-    def __init__(self, time_iceland, time_other):
-        ## self.voydis = Flight.distance
-        self.voydis = 100
-        self.time_iceland = time_iceland
-        self.time_other = time_other
+class Voyage(Flight):
+    def __init__(self, destination, date_from_iceland, date_back_to_iceland, pilot_captain, pilot_copilot, flight_attendant_supervisor, flight_attendant):
+        self.destination = destination
+        self.date_from_iceland = date_from_iceland
+        self.date_back_to_iceland = date_back_to_iceland
+        self.pilot_captain = pilot_captain
+        self.pilot_copilot = pilot_copilot
+        self.flight_attendant_supervisor = flight_attendant_supervisor
+        self.flight_attendant = flight_attendant
 
     def double_distance(self):
-        self.voydis += self.voydis
-    
-    def time_of_arrival(self):
-        '''
-        Sýna hvenær flugvéling lendir á íslandi eftir að hafa flogið til útlanda og svo aftur heim.
-        self.time_iceland er gefinn tími þegar flugvélinn tekur af stað. self.time_other er tíminn á tímabeltinu úti.
-        Það þarf að reikna þetta úr frá föstunum sem eru uppi.
-        '''
-        self.time_iceland += Flight.kulusuk
-        self.time_iceland += Flight.nuuk
-        self.time_iceland += Flight.thorshavn
-        self.time_iceland += Flight.tingwall
-        self.time_iceland += Flight.longyearbyean
+        pass
     
     def check_pilot_licence(self):
         pass
@@ -118,23 +109,29 @@ class voyage(Flight):
         pass
     
     def store_voyage(self):
-        pass
+        voy = {'destination': self.destination, 'date_from_iceland': self.date_from_iceland, 'date_back_to_iceland': self.date_back_to_iceland,'pilot_captain': self.pilot_captain ,'pilot_copilot': self.pilot_copilot,'flight_attendant_supervisor': self.flight_attendant_supervisor,'flight_attendant': self.flight_attendant}       
+        storing = Database(6,voy)
+        storing.create_data()
     
     def update_fight_number(self):
         pass
 
 
 class Destination:
-    def __init__(self, country, city, airport, flighttime, distance, emergencycontact, emergencynumber):
-        self.country = country
-        self.city = city
+    def __init__(self, short, location, airport, flighttime, distance, emergencycontact, emergencynumber):
+        self.short = short
+        self.location = location
         self.airport = airport
         self.flighttime = flighttime
         self.distance = distance
         self.emergencycontact = emergencycontact
         self.emergencynumber = emergencynumber
-        
     
+    def store_destination(self):
+        dest_dict = {'id': self.short, 'location': self.location, 'airport': self.airport,'flighttime': self.flighttime,'distance': self.distance,'contact': self.emergencycontact,'number': self.emergencynumber}
+        storing = Database(3,dest_dict)
+        storing.create_data()
+
     def updateEmergencyContact(self):
         pass
 

@@ -23,12 +23,14 @@ class Database():
             self.fieldnames = ['ssn', 'firstname', 'lastname', 'role', 'rank', 'licence', 'address', 'mobile', 'email', 'working', 'arriving']
         elif self.request == Destinations:
             self.filename = "./CSV/Destinations.csv"
+            self.fieldnames = ['id', 'location', 'airport', 'flighttime', 'distance', 'contact', 'number']
         elif self.request == PastFlights:
             self.filename = "./CSV/PastFlights.csv"
         elif self.request == UpcomingFlights:
             self.filename = "./CSV/UpcomingFlights.csv"
         elif self.request == Voyage:
             self.filename = "./CSV/Voyage.csv"
+            self.fieldnames = ['destination','date_from_iceland','date_back_to_iceland','pilot_captain','pilot_copilot','flight_attendant_supervisor','flight_attendant']
         
     def get_data(self):               
         try:

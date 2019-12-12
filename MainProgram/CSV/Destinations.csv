@@ -1,4 +1,4 @@
-ID,Location,Airport,Flight-time,Distance,Contact,Emergency Number
+id,location,airport,flighttime,distance,contact,number
 LYR,Longyearbyean,Svalbard airport,4klst,3000km,Kristján Mar,5554444
 GOH,Nuuk,Nuuk Airport,5klst,4000km,Haflidi Stefansson,5556666
 KUS,Kulusuk,Kulusuk Airport,4klst,3000km,Breki Hardarsson,5559999
