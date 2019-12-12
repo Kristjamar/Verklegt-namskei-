@@ -20,6 +20,7 @@ class Database():
             self.fieldnames = ['aircraft_type', 'num_seats','manufacturer','name_of_aircraft']
         elif self.request == Crew:
             self.filename = "./CSV/Crew.csv"
+            self.fieldnames = ['ssn', 'firstname', 'lastname', 'role', 'rank', 'licence', 'address', 'mobile', 'email', 'working', 'arriving']
         elif self.request == Destinations:
             self.filename = "./CSV/Destinations.csv"
         elif self.request == PastFlights:
@@ -29,7 +30,7 @@ class Database():
         elif self.request == Voyage:
             self.filename = "./CSV/Voyage.csv"
         
-    def get_csv(self):               
+    def get_data(self):               
         try:
             with open(self.filename, 'r', newline='') as self.csvfile:
                 self.reader = csv.reader(self.csvfile, skipinitialspace=True)

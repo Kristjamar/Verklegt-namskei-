@@ -80,10 +80,7 @@ def Reg_menu():
     print("")
     user_input = input("Choose an option: ")
     if user_input == "1":
-        emp_str = New_employee()
-        firstname, lastname, ssn, title , phonenumber, mobile, address = emp_str
-        emp_1 = Employee(firstname, lastname, ssn, title , phonenumber, mobile, address)
-        emp_1.save_employee()
+        New_employee()
         
     elif user_input == "2":
         dest_str = New_destination()

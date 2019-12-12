@@ -40,34 +40,23 @@ class Flight():
 
 
 class Employee:
-    def __init__(self, firstname, lastname, ssn, title, phonenumber, mobile, address, working="no"):
+    def __init__(self, ssn, firstname, lastname, rank, role, licence, address, mobile):
         self.firstname = firstname
         self.lastname = lastname
         self.ssn = ssn
-        self.title = title
-        self.phonenumber = phonenumber
+        self.rank = rank
+        self.role = role
+        self.licence = licence
         self.mobile = mobile
         self.email_str = firstname + lastname + "@nan.is"
         self.address = address
-
-    def createEmployee(self):
-        ''' 
-        Þarf að gera fall sem býr til nýjan Employee með öllum upplýsingunum sem það tekur inn í __init__() 
-        það væri best að láta þetta fall sækja csv frá Datalayer. Fyrst samt að prufa í testskjali.
-
-        '''
-        pass
-
-    def store_employee(self):
-         emp = {'first_name': self.firstname, 'last_name': self.lastname, 'SSN': self.ssn,'title': self.title ,'phone_number': self.phonenumber,'mobile': self.mobile,'email': self.email_str,'address': self.address, 'working': 'no'}       
-         return emp
+        self.working = "Not Working"
+        self.arriving = "N/A"
 
     def save_employee(self):
-            with open('employeetest.csv', 'a', newline='') as csvfile:
-                    fieldnames = ['first_name', 'last_name','SSN','title','phone_number','mobile','email','address','working']
-                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-                    writer.writerow(Employee.store_employee(self))
+        emp = {'ssn': self.ssn, 'firstname': self.firstname, 'lastname': self.lastname, 'role': self.role , 'rank': self.rank, 'licence': self.licence, 'address': self.address, 'mobile': self.mobile, 'email': self.email_str, 'working': self.working, 'arriving': self.arriving}       
+        storing = Database(2,emp)
+        storing.create_data()
 
     def updatePhonenumber(self):
         pass
@@ -83,17 +72,6 @@ class Employee:
 
     def updateTile(self):
         pass
-
-    def __str__(self):
-        pass
-
-# def Make_and_save_employee():
-#     #Makes employee from user input and saves it in a csv file, the save function will be moved later.
-#     emp_str = New_employee()
-#     firstname, lastname, ssn, title , phonenumber, mobile, address = emp_str
-#     emp_1 = Employee(firstname, lastname, ssn, title , phonenumber, mobile, address)
-    
-#     emp_1.save_employee()
 
 
 class flight_attendant(Employee):
@@ -155,35 +133,10 @@ class Destination:
         self.distance = distance
         self.emergencycontact = emergencycontact
         self.emergencynumber = emergencynumber
-
-    def New_destination():
-        country = input("country: ")
-        city = input("city: ")
-        airport = input("airport: ")
-        flighttime = input("flighttime: ")
-        distance = input("distance: ")
-        emergencycontact = input("emergencycontact: ")
-        emergencynumber = input("emergencynumber: ")
-
-        dest_str = country, city, airport, flighttime, distance, emergencycontact, emergencynumber
-        return dest_str  
+        
     
     def updateEmergencyContact(self):
         pass
-    
-    def __str__(self):
-        pass
-
-    def store_destination(self):
-         dest = {'country': self.country, 'city': self.city, 'airport': self.airport,'flighttime': self.flighttime, 'distance': self.distance, 'emergencycontact': self.emergencycontact, 'emergencynumber': self.emergencynumber}       
-         return dest
-
-    def save_destination(self):
-            with open('employeetest.csv', 'a', newline='') as csvfile:
-                    fieldnames = ['country', 'city','airport','flighttime', 'distance', 'emergencycontact', 'emergencynumber']
-                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-                    writer.writerow(Destination.store_destination(self))
 
 
 class Aircraft():
@@ -229,13 +182,13 @@ class Get_Data:
 
     def get_emp_list(self):
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_csv()
+        self.datalist = self.DBsmith.get_data()
         return self.datalist
 
     def get_specific_emp(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_csv()
+        self.datalist = self.DBsmith.get_data()
         for row in self.datalist:
             if row["ssn"] == self.SSN:
                 templist.append(row)
@@ -247,7 +200,7 @@ class Get_Data:
     def get_pilots(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_csv()
+        self.datalist = self.DBsmith.get_data()
         for row in self.datalist:
             if row["role"] == "Pilot":
                 templist.append(row)
@@ -256,7 +209,7 @@ class Get_Data:
     def get_flightattendants(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_csv()
+        self.datalist = self.DBsmith.get_data()
         for row in self.datalist:
             if row["role"] == "Cabincrew":
                 templist.append(row)
@@ -264,13 +217,13 @@ class Get_Data:
 
     def get_destinations(self):
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_csv()
+        self.datalist = self.DBsmith.get_data()
         return self.datalist
 
     def get_emp_not_working(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_csv()
+        self.datalist = self.DBsmith.get_data()
         for row in self.datalist:
             if row["working"] == "Not Working":
                 templist.append(row)
@@ -279,7 +232,7 @@ class Get_Data:
     def get_emp_working(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_csv()
+        self.datalist = self.DBsmith.get_data()
         for row in self.datalist:
             if row["working"] == "Working":
                 templist.append(row)
@@ -293,7 +246,7 @@ class Get_Data:
 
     def get_voyage(self):
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_csv()
+        self.datalist = self.DBsmith.get_data()
         return self.datalist
 
     def get_voyage_emp_week(self):
@@ -305,7 +258,7 @@ class Get_Data:
     def get_pilots_from_airtype(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_csv()
+        self.datalist = self.DBsmith.get_data()
         for row in self.datalist:
             if row["licence"] == self.licence:
                 templist.append(row)
