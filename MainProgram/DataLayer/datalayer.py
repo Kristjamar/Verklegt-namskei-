@@ -15,19 +15,19 @@ class Database():
         self.reader = None
         self.request = request
         if self.request == Aircraft:
-            self.filename = "Aircraft.csv"
+            self.filename = "./CSV/Aircraft.csv"
         elif self.request == Crew:
-            self.filename = "Crew.csv"
+            self.filename = "./CSV/Crew.csv"
         elif self.request == Destinations:
-            self.filename = "Destinations.csv"
+            self.filename = "./CSV/Destinations.csv"
         elif self.request == PastFlights:
-            self.filename = "PastFlights.csv"
+            self.filename = "./CSV/PastFlights.csv"
         elif self.request == UpcomingFlights:
-            self.filename = "UpcomingFlights.csv"
+            self.filename = "./CSV/UpcomingFlights.csv"
         elif self.request == Voyage:
-            self.filename = "Voyage.csv"
+            self.filename = "./CSV/Voyage.csv"
         
-    def get_data(self):               
+    def get_csv(self):               
         try:
             with open(self.filename, 'r', newline='') as self.csvfile:
                 self.reader = csv.reader(self.csvfile, skipinitialspace=True)

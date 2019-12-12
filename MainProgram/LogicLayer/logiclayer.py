@@ -250,13 +250,13 @@ class Get_Data:
 
     def get_emp_list(self):
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_data()
+        self.datalist = self.DBsmith.get_csv()
         return self.datalist
 
     def get_specific_emp(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_data()
+        self.datalist = self.DBsmith.get_csv()
         for row in self.datalist:
             if row["ssn"] == self.SSN:
                 templist.append(row)
@@ -268,7 +268,7 @@ class Get_Data:
     def get_pilots(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_data()
+        self.datalist = self.DBsmith.get_csv()
         for row in self.datalist:
             if row["role"] == "Pilot":
                 templist.append(row)
@@ -277,7 +277,7 @@ class Get_Data:
     def get_flightattendants(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_data()
+        self.datalist = self.DBsmith.get_csv()
         for row in self.datalist:
             if row["role"] == "Cabincrew":
                 templist.append(row)
@@ -285,13 +285,13 @@ class Get_Data:
 
     def get_destinations(self):
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_data()
+        self.datalist = self.DBsmith.get_csv()
         return self.datalist
 
     def get_emp_not_working(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_data()
+        self.datalist = self.DBsmith.get_csv()
         for row in self.datalist:
             if row["working"] == "Not Working":
                 templist.append(row)
@@ -300,7 +300,7 @@ class Get_Data:
     def get_emp_working(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_data()
+        self.datalist = self.DBsmith.get_csv()
         for row in self.datalist:
             if row["working"] == "Working":
                 templist.append(row)
@@ -314,7 +314,7 @@ class Get_Data:
 
     def get_voyage(self):
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_data()
+        self.datalist = self.DBsmith.get_csv()
         return self.datalist
 
     def get_voyage_emp_week(self):
@@ -326,7 +326,7 @@ class Get_Data:
     def get_pilots_from_airtype(self):
         templist = []
         self.DBsmith = Database(self.request)
-        self.datalist = self.DBsmith.get_data()
+        self.datalist = self.DBsmith.get_csv()
         for row in self.datalist:
             if row["licence"] == self.licence:
                 templist.append(row)
