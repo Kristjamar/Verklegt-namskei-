@@ -9,13 +9,15 @@ Voyage = 6
 
 class Database():
 
-    def __init__(self, request):
+    def __init__(self, request, append_dict):
         self.datalist = []
         self.fieldnames = None
         self.reader = None
         self.request = request
+        self.append_dict = append_dict
         if self.request == Aircraft:
             self.filename = "./CSV/Aircraft.csv"
+            self.fieldnames = ['aircraft_type', 'num_seats','manufacturer','name_of_aircraft']
         elif self.request == Crew:
             self.filename = "./CSV/Crew.csv"
         elif self.request == Destinations:
@@ -27,7 +29,7 @@ class Database():
         elif self.request == Voyage:
             self.filename = "./CSV/Voyage.csv"
         
-    def get_csv(self):               
+    def get_data(self):               
         try:
             with open(self.filename, 'r', newline='') as self.csvfile:
                 self.reader = csv.reader(self.csvfile, skipinitialspace=True)
@@ -38,12 +40,11 @@ class Database():
         except FileNotFoundError:
             print("Filename {} not found!".format(self.filename))
 
-    def ch_upd_data(self):               
+    def create_data(self):               
         try:
-            with open(self.filename, 'w+', newline='') as self.csvfile:
-                self.writer = csv.DictWriter(self.csvfile, fieldnames=self.fieldnames)
+            with open(self.filename, 'a', newline='') as self.csvfile:
+                writer = csv.DictWriter(self.csvfile, fieldnames=self.fieldnames)
+                writer.writerow(self.append_dict)
+
         except FileNotFoundError:
             print("Filename {} not found!".format(self.filename))
-
-    def __str__(self):
-        return "{}".format(self.datalist)

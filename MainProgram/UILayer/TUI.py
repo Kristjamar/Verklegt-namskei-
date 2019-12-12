@@ -96,10 +96,7 @@ def Reg_menu():
         first_menu()
 
     elif user_input == "4":
-        airc_str = New_aircraft()
-        aircraft_type, num_seats, manufacturer, name_of_aircraft = airc_str
-        airc_1 = Aircraft(aircraft_type, num_seats, manufacturer, name_of_aircraft)
-        airc_1.save_aircraft()
+        New_aircraft()
     
     elif user_input == MAINMENU:
         first_menu()
@@ -178,14 +175,15 @@ def New_employee():
     
 
 def New_aircraft():
-        aircraft_type = input("aircraft_type: ")
-        num_seats = input("num_seats: ")
-        manufacturer = input("manufacturer: ")
-        name_of_aircraft = input("name_of_aircraft: ")
-        
-        airc_str = aircraft_type, num_seats, manufacturer, name_of_aircraft
-        #return aircraft_type, num_seats, manufacturer, name_of_aircraft
-        return airc_str
+    aircraft_type = input("aircraft_type: ")
+    num_seats = input("num_seats: ")
+    manufacturer = input("manufacturer: ")
+    name_of_aircraft = input("name_of_aircraft: ")
+    
+    airc_str = Aircraft(aircraft_type, num_seats, manufacturer, name_of_aircraft)
+    airc_str.store_aircraft()
+
+    Reg_menu()
 
 def New_destination():
         country = input("country: ")

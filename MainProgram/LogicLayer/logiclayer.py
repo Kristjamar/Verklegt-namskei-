@@ -192,31 +192,18 @@ class Aircraft():
         self.num_seats = num_seats
         self.manufacturer = manufacturer
         self.name_of_aircraft = name_of_aircraft
-
-    def New_aircraft(self):
-        ''' 
-    Þarf að gera fall sem býr til nýja Flugvél með öllum upplýsingunum sem það tekur inn í __init__() 
-    það væri best að láta þetta fall sækja csv frá Datalayer. Fyrst samt að prufa í testskjali.
-
-    '''
-        aircraft_type = input("aircraft_type: ")
-        num_seats = input("num_seats: ")
-        manufacturer = input("manufacturer: ")
-        name_of_aircraft = input("name_of_aircraft: ")
-        
-        airc_str = aircraft_type, num_seats, manufacturer, name_of_aircraft
-        #return aircraft_type, num_seats, manufacturer, name_of_aircraft
-        return airc_str
         
     def store_aircraft(self):
-         airc = {'aircraft_type': self.aircraft_type, 'num_seats': self.num_seats, 'manufacturer': self.manufacturer,'name_of_aircraft': self.name_of_aircraft}       
-         return airc
-
-    def __str__(self):
-        pass
+        airc = {'aircraft_type': self.aircraft_type, 'num_seats': self.num_seats, 'manufacturer': self.manufacturer,'name_of_aircraft': self.name_of_aircraft}       
+        storing = Database(1,airc)
+        storing.create_data()
 
     def save_aircraft(self):
+<<<<<<< HEAD
             Database.save_aircraft()
+=======
+        pass
+>>>>>>> c002b298afb32895994adb95b7180cfb12722e99
 
 
 class Pilot(Employee):
