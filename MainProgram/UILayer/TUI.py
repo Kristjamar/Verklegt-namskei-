@@ -125,17 +125,19 @@ def get_menu():
 
     elif user_input == "2":
         get_menu_destinations()
+
     elif user_input == "3":
-        print("WIP MENU, sendi þig aftur á Main menu")
-        first_menu()
+        get_voyage()
+
     elif user_input == "4":
         print("WIP MENU, sendi þig aftur á Main menu")
         first_menu()
 
     elif user_input == MAINMENU:
         first_menu()
+
     elif user_input == BACK:
-        first_menu())
+        first_menu()
 
 
 def New_employee():
@@ -293,11 +295,11 @@ def get_menu_destinations():
 def get_voyage():
     voyage = Get_Data(6)
     voyage_printer = voyage.get_voyage()
-    print("##################################################")
+    print("#############################################################")
     for row in voyage_printer:
         for i in row:
-            print("|  {:17}: {:26} | ".format(i,row[i]))
-        print("##################################################")
+            print("|  {:28}: {:26} | ".format(i,row[i]))
+        print("#############################################################")
     print()
     input("Press ENTER to continue.. ")
     get_menu()

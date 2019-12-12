@@ -224,10 +224,10 @@ class Aircraft():
 
 
 class Pilot(Employee):
-    def __init__(self, airplane, flight_license, airplane_type, captain):
-        self.airplane = airplane
-        self.fligh_license = flight_license
-        self.airplane_type = airplane_type
+    def __init__(self, aircraft, flight_license, aircraft_type, captain):
+        self.aircraft = aircraft
+        self.flight_license = flight_license
+        self.aircraft_type = aircraft_type
         self.captain = captain
 
     def update_licence(self):
