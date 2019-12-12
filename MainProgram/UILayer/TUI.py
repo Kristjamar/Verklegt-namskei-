@@ -3,7 +3,7 @@ from LogicLayer.logiclayer import Employee , Aircraft, Get_Data, Destination
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
 QUIT = "q" or "Q"
-
+CANCEL = "c" or "C"
 
 class Menu:
     def __init__(self, title, option1, option2, option3, option4, option5, option6, option7, how_many_options):
@@ -144,14 +144,36 @@ def New_employee():
     
     register_emp_menu.build_menu()
     firstname = input("Fyrirnafn: ")
+    if firstname == CANCEL:
+        first_menu()
+        return
     lastname = input("Eftirnafn: ")
+    if lastname == CANCEL:
+        first_menu()
+        return
     ssn = input("Kennitala: ")
+    if ssn == CANCEL:
+        first_menu()
+        return
     title = input("Titill: ")
+    if title == CANCEL:
+        first_menu()
+        return
     phonenumber = int(input("Heimasími: "))
+    if phonenumber == CANCEL:
+        first_menu()
+        return
     mobile = int(input("Farsími: "))
+    if mobile == CANCEL:
+        return
     address = input("Heimilisfang: ")
+    if address == CANCEL:
+        first_menu()
+        return
     emp_str = firstname, lastname, ssn, title , phonenumber, mobile, address
+
     #return firstname, lastname, ssn, title , phonenumber, mobile, address
+    
     return emp_str
     
 
@@ -167,12 +189,33 @@ def New_aircraft():
 
 def New_destination():
         country = input("country: ")
+        if country == CANCEL:
+            first_menu()
+            return
         city = input("city: ")
+        if city == CANCEL:
+            first_menu()
+            return
         airport = input("airport: ")
+        if airport == CANCEL:
+            first_menu()
+            return
         flighttime = input("flighttime: ")
+        if flighttime == CANCEL:
+            first_menu()
+            return
         distance = input("distance: ")
+        if distance == CANCEL:
+            first_menu()
+            return
         emergencycontact = input("emergencycontact: ")
+        if emergencycontact == CANCEL:
+            first_menu()
+            return
         emergencynumber = input("emergencynumber: ")
+        if emergencynumber == CANCEL:
+            first_menu()
+            return
 
         
         dest_str = country, city, airport, flighttime, distance, emergencycontact, emergencynumber

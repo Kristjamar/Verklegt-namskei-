@@ -216,11 +216,7 @@ class Aircraft():
         pass
 
     def save_aircraft(self):
-            with open('employeetest.csv', 'a', newline='') as csvfile:
-                    fieldnames = ['aircraft_type', 'num_seats','manufacturer','name_of_aircraft']
-                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-                    writer.writerow(Aircraft.store_aircraft(self))
+            Database.save_aircraft()
 
 
 class Pilot(Employee):
