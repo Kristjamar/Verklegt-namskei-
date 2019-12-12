@@ -6,8 +6,9 @@ QUIT = "q" or "Q"
 CANCEL = "c" or "C"
 
 class Menu:
-    def __init__(self, title, option1, option2, option3, option4, option5, option6, option7, how_many_options):
+    def __init__(self, title, how_many_options,option1, option2, option3, option4, option5, option6, option7, option8, option9,option10):
         self.title = title
+        self.how_many_options = how_many_options
         self.option1 = option1
         self.option2 = option2
         self.option3 = option3
@@ -15,13 +16,17 @@ class Menu:
         self.option5 = option5
         self.option6 = option6
         self.option7 = option7
-        self.how_many_options = how_many_options
+        self.option8 = option8
+        self.option9 = option9
+        self.option10 = option10
 
-    def build_menu(self):
+    def build_title(self):
         print("########################################")
         print("##{:^36}##".format(self.title))
         print("########################################")
         print("#                                      #")
+        
+    def build_menu(self):
         print("# 1.{:34} #".format(self.option1))
         print("# 2.{:34} #".format(self.option2))
         print("# 3.{:34} #".format(self.option3))
@@ -31,20 +36,28 @@ class Menu:
             print("# 5.{:34} #".format(self.option5))
         if self.how_many_options >= 6:
             print("# 6.{:34} #".format(self.option6))
-        if self.how_many_options == 7:
+        if self.how_many_options >= 7:
             print("# 7.{:34} #".format(self.option7))
+        if self.how_many_options >= 8:
+            print("# 8.{:34} #".format(self.option8))
+        if self.how_many_options == 9:
+            print("# 9.{:34} #".format(self.option9))
+        if self.how_many_options == 9:
+            print("# 10.{:34} #".format(self.option10))
         print("#                                      #")
         print("########################################")
         if self.title == "Main Menu":
-            print("[Q]uit")
+            print("   [Q]uit")
         elif self.how_many_options <=4:
-            print('[B]ack       [M]ain_menu')
-        
-        
+            print('   [B]ack       [M]ain_menu')
+        elif self.how_many_options >=9:
+            #Ccancel = "[Enter 'C' to cancel]"
+            print('{:^40}'.format("[Enter 'C' to cancel]"))
         return ""
+        
         '''Makes building a menu easier'''
 
-        
+
     # def title(self):
     #     print("#############################")
     #     print("------{}------".format(self.title))
@@ -52,15 +65,16 @@ class Menu:
     #     print()
     #     return ""
 
-main_menu = Menu("Main Menu", "Register", "Information", "Update info","","","","", 3)
-register_menu = Menu("Register", "Register employee", "Register destination", "Register voyage", "Register aircraft","","","", 4)
-listing_menu = Menu("Information", "Show employees", "Show destinations", "Show voyages", "Show aircraft","","","", 4)
-update_menu = Menu("Update info", "Update employee", "Update destinations", "Update voyages", "Update aircraft","","","", 4)
-register_emp_menu = Menu("Register Employee", "SSN:(0808693369)""First name:(Jón)", "Last name:(Jónsson)",  "Role: (Pilot)","Rank: (Captain)","Licence: (NAFokkerF100/(N/A))""Address:(Bankastræti 5)", "Mobile:(5812345)","Email:(Jónjónsson@nan.is)","Address:(Bankastræti 5)", 7)
+main_menu = Menu("Main Menu", 3, "Register", "Information", "Update info","","","","","","","")
+register_menu = Menu("Register", 4, "Register employee", "Register destination", "Register voyage", "Register aircraft","","","","","","")
+listing_menu = Menu("Information", 4, "Show employees", "Show destinations", "Show voyages", "Show aircraft","","","","","","")
+update_menu = Menu("Update info", 4, "Update employee", "Update destinations", "Update voyages", "Update aircraft","","","","","","")
+register_emp_menu = Menu("Register Employee", 10, "SSN:(0808693369)","First name:(Jón)", "Last name:(Jónsson)",  "Role: (Pilot)","Rank: (Captain)","Licence: (NAFokkerF100/(N/A))","Address:(Bankastræti 5)", "Mobile:(5812345)","Email:(Jónjónsson@nan.is)","Address:(Bankastræti 5)")
 
 def first_menu():
+    main_menu.build_title()
     main_menu.build_menu()
-    print("")
+    print()
     user_input = input("Choose an option: ")
     
     if user_input == "1":
@@ -76,7 +90,8 @@ def first_menu():
         print("Invalid input")
 
 def Reg_menu():
-    print(register_menu.build_menu())
+    register_menu.build_title()
+    register_menu.build_menu()
     print("")
     user_input = input("Choose an option: ")
     if user_input == "1":
@@ -99,7 +114,8 @@ def Reg_menu():
 
 
 def get_menu():
-    print(listing_menu.build_menu())
+    listing_menu.build_title()
+    listing_menu.build_menu()
     print("")
     user_input = input("Choose an option: ")
     if user_input == "1":
@@ -133,7 +149,7 @@ def get_menu():
 
 
 def New_employee():
-    
+    register_emp_menu.build_title()
     register_emp_menu.build_menu()
     
     ssn = input("SSN: ")
@@ -184,10 +200,10 @@ def New_employee():
     
 
 def New_aircraft():
-    aircraft_type = input("aircraft_type: ")
-    num_seats = input("num_seats: ")
-    manufacturer = input("manufacturer: ")
-    name_of_aircraft = input("name_of_aircraft: ")
+    aircraft_type = input("Aircraft type: ")
+    num_seats = input("Number of seats: ")
+    manufacturer = input("Manufacturer: ")
+    name_of_aircraft = input("Name of aircraft: ")
     
     airc_str = Aircraft(aircraft_type, num_seats, manufacturer, name_of_aircraft)
     airc_str.store_aircraft()
@@ -203,23 +219,23 @@ def New_destination():
         if location == CANCEL:
             first_menu()
             return
-        airport = input("airport: ")
+        airport = input("Airport: ")
         if airport == CANCEL:
             first_menu()
             return
-        flighttime = input("flighttime: ")
+        flighttime = input("Flighttime: ")
         if flighttime == CANCEL:
             first_menu()
             return
-        distance = input("distance: ")
+        distance = input("Distance: ")
         if distance == CANCEL:
             first_menu()
             return
-        emergencycontact = input("emergencycontact: ")
+        emergencycontact = input("Emergency contact: ")
         if emergencycontact == CANCEL:
             first_menu()
             return
-        emergencynumber = input("emergencynumber: ")
+        emergencynumber = input("Emergency number: ")
         if emergencynumber == CANCEL:
             first_menu()
             return
@@ -233,23 +249,23 @@ def New_destination():
 
 def get_sub_menu():
     print("")
-    print("1. Finna starfsmann")
-    print("2. Birta flugmenn")
-    print("3. Birta flugþjóna")
-    print("4. Birta starfsmenn á vakt")
-    print("5. Birta starfsmenn ekki á vakt")
-    print("6. Finna flugmenn eftir flugvélategund")
+    print("1. Find employee")
+    print("2. Show pilots")
+    print("3. Show flight attendants")
+    print("4. Show employees on shift")
+    print("5. Show employees not on shift")
+    print("6. Find pilots with certain licence")
     print("")
     print('   [B]ack       [M]ain_menu')
     user_input_sec = input("Choose an option: ")
     print("")
     if user_input_sec == "1":
-        ssn_temp = input("Sladu inn kennitolu: ")
+        ssn_temp = input("Enter SSN: ")
         print("")
         emp_spec = Get_Data(2, ssn_temp)
         emp_spec_printer = emp_spec.get_specific_emp()
         if emp_spec_printer == False:
-            print("Enginn starfsmaður með þessa kennitölu")
+            print("No employee with that SSN")
         else:
             print("##################################################")
             for row in emp_spec_printer:
@@ -310,12 +326,12 @@ def get_sub_menu():
         get_sub_menu()
 
     elif user_input_sec == "6":
-        licence_temp = input("Sladu inn flugvelategund: ")
+        licence_temp = input("Enter aircraft type: ")
         print("")
         pilots_licence = Get_Data(2,None,licence_temp)
         pilots_licence_printer = pilots_licence.get_pilots_from_airtype()
         if pilots_licence_printer == False:
-            print("Enginn flugmaður með leyfi á þessa tilteknu vél")
+            print("No pilot with that perticular licence")
         else:
             print("##################################################")
             for row in pilots_licence_printer:
@@ -354,8 +370,6 @@ def get_voyage():
     print()
     input("Press ENTER to continue.. ")
     get_menu()
-
-first_menu()
 #Make employee from user input
 #Send that information to the Employee class
 #Send the employee to csv from there
