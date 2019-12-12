@@ -1,4 +1,4 @@
-from LogicLayer.logiclayer import Employee , Aircraft, Get_Data, Destination
+from LogicLayer.logiclayer import Employee , Aircraft, Get_Data, Destination, Voyage
 
 MAINMENU = "m" or "M"
 BACK = "b" or "B"
@@ -246,6 +246,21 @@ def New_destination():
 
         Reg_menu()
 
+def New_voyage():
+    
+    destination = input("Destination: ")
+    date_from_iceland = input("Date From Iceland: ")
+    date_back_from_iceland = input("Date Back To Iceland: ")
+    print("Available Crew")
+    pilot_captain = input("Captain: ")
+    pilot_copilot = input("CoPilot: ")
+    flight_attendant_supervisor = input("Flight Attendant Supervisor: ")
+    flight_attendant = input("Flight Attendant: ")
+
+    new_voy = Voyage(destination, date_from_iceland, date_back_from_iceland, pilot_captain, pilot_copilot, flight_attendant_supervisor, flight_attendant)
+    new_voy.store_voyage()
+
+    Reg_menu()
 
 def get_sub_menu():
     print("")
