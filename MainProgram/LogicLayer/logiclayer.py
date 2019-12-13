@@ -270,6 +270,36 @@ class Get_Data:
         else:
             return False
 
+    def get_voyage_week(self):
+        finallist = []
+        self.date = datetime.datetime.fromisoformat(self.date)
+        timedelta = datetime.timedelta(days=1)
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        for _ in range(1,8):
+            for row in self.datalist:
+                temptime = datetime.datetime.fromisoformat(row['date_from_iceland'])
+                if temptime.date() == (self.date.date()):
+                    finallist.append(row)
+            self.date = self.date + timedelta
+        if finallist:
+            return finallist
+        else:
+            return False
+
+    def get_voyage_day(self):
+        finallist = []
+        self.date = datetime.datetime.fromisoformat(self.date)
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        for row in self.datalist:
+            temptime = datetime.datetime.fromisoformat(row['date_from_iceland'])
+            if temptime.date() == (self.date.date()):
+                finallist.append(row)
+        if finallist:
+            return finallist
+        else:
+            return False
 
     def get_voyage_ID(self):
         pass
