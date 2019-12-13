@@ -170,12 +170,14 @@ class Pilot(Employee):
     
 
 class Get_Data:
-    def __init__(self, request, SSN=None, licence=None):
+    def __init__(self, request, SSN=None, licence=None, name=None, date=None):
         self.SSN = SSN
         self.datalist = None
         self.request = request
         self.DBsmith = None
         self.licence = licence
+        self.name = name
+        self.date = date
 
     def get_emp_list(self):
         self.DBsmith = Database(self.request)
@@ -247,7 +249,27 @@ class Get_Data:
         return self.datalist
 
     def get_voyage_emp_week(self):
-        pass
+        templist = []
+        finallist = []
+        self.date = datetime.datetime.fromisoformat(self.date)
+        timedelta = datetime.timedelta(days=1)
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        for row in self.datalist:
+            if (row["pilot_captain"] == self.name) or (row["pilot_copilot"] == self.name) or (row["flight_attendant_supervisor"] == self.name) or (row["flight_attendant"] == self.name):
+                templist.append(row)
+        for _ in range(1,8):
+            for row in templist:
+                temptime = datetime.datetime.fromisoformat(row['date_from_iceland'])
+                if temptime.date() == (self.date.date()):
+                    finallist.append(row)
+            self.date = self.date + timedelta
+
+        if finallist:
+            return finallist
+        else:
+            return False
+
 
     def get_voyage_ID(self):
         pass

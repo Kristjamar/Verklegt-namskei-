@@ -270,6 +270,7 @@ def get_sub_menu():
     print("4. Show employees on shift")
     print("5. Show employees not on shift")
     print("6. Find pilots with certain licence")
+    print("7. Find a work week for a certain employee")
     print("")
     print('   [B]ack       [M]ain_menu')
     user_input_sec = input("Choose an option: ")
@@ -356,6 +357,29 @@ def get_sub_menu():
         print()
         input("Press ENTER to continue.. ")
         get_sub_menu()
+
+    elif user_input_sec == "7":
+        name_of_temp = input("Enter name of employee: ")
+        date_temp = input("Enter a date: ")
+        print("")
+        date_checker = Get_Data(6,None,None,name_of_temp,date_temp)
+        date_checker_printer = date_checker.get_voyage_emp_week()
+        if date_checker_printer == False:
+            print("Enginn flug í þessari viku")
+        else:
+            print("#############################################################")
+            for row in date_checker_printer:
+                for i in row:
+                    print("|  {:28}: {:26} | ".format(i,row[i]))
+                print("#############################################################")
+        print()
+        input("Press ENTER to continue.. ")
+        get_sub_menu()
+
+    elif user_input_sec == MAINMENU:
+        first_menu()
+    elif user_input_sec == BACK:
+        get_menu()
 
     elif user_input_sec == MAINMENU:
         first_menu()
