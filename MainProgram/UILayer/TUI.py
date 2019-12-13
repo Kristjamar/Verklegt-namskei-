@@ -247,19 +247,65 @@ def New_destination():
         Reg_menu()
 
 def New_voyage():
-    
+    flown_tday = True
     destination = input("Destination: ")
+    if destination == CANCEL:
+            first_menu()
+            return
+
     date_from_iceland = input("Date From Iceland: ")
+    if date_from_iceland == CANCEL:
+            first_menu()
+            return
+
     date_back_from_iceland = input("Date Back To Iceland: ")
-    print("Available Crew")
-    pilot_captain = input("Captain: ")
-    pilot_copilot = input("CoPilot: ")
-    flight_attendant_supervisor = input("Flight Attendant Supervisor: ")
-    flight_attendant = input("Flight Attendant: ")
+    if date_back_from_iceland == CANCEL:
+            first_menu()
+            return
+
+    while flown_tday:
+        pilot_captain = input("Captain: ")
+        if pilot_captain == CANCEL:
+            first_menu()
+            return
+        checker = Get_Data(6,None,None,pilot_captain,date_from_iceland,1)
+        flown_tday = checker.get_checker()
+        if flown_tday == True:
+            print("Employee has already flown today. Choose another.")
+    flown_tday = True
+    while flown_tday:
+        pilot_copilot = input("CoPilot: ")
+        if pilot_copilot == CANCEL:
+            first_menu()
+            return
+        checker = Get_Data(6,None,None,pilot_copilot,date_from_iceland,2)
+        flown_tday = checker.get_checker()
+        if flown_tday == True:
+            print("Employee has already flown today. Choose another.")
+    flown_tday = True
+    while flown_tday:
+        flight_attendant_supervisor = input("Flight Attendant Supervisor: ")
+        if flight_attendant_supervisor == CANCEL:
+            first_menu()
+            return
+        checker = Get_Data(6,None,None,flight_attendant_supervisor,date_from_iceland,3)
+        flown_tday = checker.get_checker()
+        if flown_tday == True:
+            print("Employee has already flown today. Choose another.")
+    flown_tday = True
+    while flown_tday:
+        flight_attendant = input("Flight Attendant: ")
+        if flight_attendant == CANCEL:
+            first_menu()
+            return
+        checker = Get_Data(6,None,None,flight_attendant,date_from_iceland,4)
+        flown_tday = checker.get_checker()
+        if flown_tday == True:
+            print("Employee has already flown today. Choose another.")
 
     new_voy = Voyage(destination, date_from_iceland, date_back_from_iceland, pilot_captain, pilot_copilot, flight_attendant_supervisor, flight_attendant)
     new_voy.store_voyage()
-
+      
     Reg_menu()
 
 def get_sub_menu():

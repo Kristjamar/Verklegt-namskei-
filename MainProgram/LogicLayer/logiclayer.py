@@ -98,15 +98,6 @@ class Voyage(Flight):
         self.pilot_copilot = pilot_copilot
         self.flight_attendant_supervisor = flight_attendant_supervisor
         self.flight_attendant = flight_attendant
-
-    def double_distance(self):
-        pass
-    
-    def check_pilot_licence(self):
-        pass
-    
-    def check_emp_day_voyage(self):
-        pass
     
     def store_voyage(self):
         voy = {'destination': self.destination, 'date_from_iceland': self.date_from_iceland, 'date_back_to_iceland': self.date_back_to_iceland,'pilot_captain': self.pilot_captain ,'pilot_copilot': self.pilot_copilot,'flight_attendant_supervisor': self.flight_attendant_supervisor,'flight_attendant': self.flight_attendant}       
@@ -170,7 +161,7 @@ class Pilot(Employee):
     
 
 class Get_Data:
-    def __init__(self, request, SSN=None, licence=None, name=None, date=None):
+    def __init__(self, request, SSN=None, licence=None, name=None, date=None, key=None):
         self.SSN = SSN
         self.datalist = None
         self.request = request
@@ -178,6 +169,14 @@ class Get_Data:
         self.licence = licence
         self.name = name
         self.date = date
+        if key == 1:
+            self.key = "pilot_captain"
+        elif key == 2:
+            self.key = "pilot_copilot"
+        elif key == 3:
+            self.key = "flight_attendant_supervisor"
+        elif key ==4:
+            self.key = "flight_attendant"
 
     def get_emp_list(self):
         self.DBsmith = Database(self.request)
@@ -318,3 +317,15 @@ class Get_Data:
 
     def get_nan_aircrafts(self):
         pass
+
+    def get_checker(self):
+        checker = False
+        self.date = datetime.datetime.fromisoformat(self.date)
+        self.DBsmith = Database(self.request)
+        self.datalist = self.DBsmith.get_data()
+        for row in self.datalist:
+            temptime = datetime.datetime.fromisoformat(row['date_from_iceland'])
+            if row[self.key] == self.name and temptime.date() == self.date.date():
+                checker = True
+        
+        return checker
