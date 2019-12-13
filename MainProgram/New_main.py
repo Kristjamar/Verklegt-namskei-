@@ -22,5 +22,5 @@ def main():
     time.sleep(5)
     first_menu()
 
-
-main()
+if __name__ == "__main__":
+    main()

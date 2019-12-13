@@ -3,8 +3,10 @@ import datetime
 from DataLayer.datalayer import Database
 
 class Flight():
+    ''' Parent of Voyage, helps create new flights and voyages. '''
     distance = None
     
+    #Constants for distance
     longyearbyean = 4
     nuuk = 3
     kulusuk = 2
@@ -22,24 +24,9 @@ class Flight():
         self.reserved = flightreserved
         Flight.distance = given_distance
 
-    def checkTimeAvailable(self, is_time_avail):
-        self.reserved = is_time_avail
-        if self.reserved == False:
-            return True
-
-    def createFlight(self):
-        ''' 
-        Þarf að gera fall sem býr til nýtt flug með öllum upplýsingunum sem það tekur inn í __init__() 
-        það væri best að láta þetta fall sækja csv frá Datalayer. Fyrst samt að prufa í testskjali.
-
-        '''
-
-    def updateFlight(self):
-        ''' Geyma '''
-        pass
-
 
 class Employee:
+    ''' Class for handling employees '''
     def __init__(self, ssn, firstname, lastname, rank, role, licence, address, mobile):
         self.firstname = firstname
         self.lastname = lastname
@@ -54,43 +41,21 @@ class Employee:
         self.arriving = "N/A"
 
     def save_employee(self):
+        #Append new employee
         emp = {'ssn': self.ssn, 'firstname': self.firstname, 'lastname': self.lastname, 'role': self.role , 'rank': self.rank, 'licence': self.licence, 'address': self.address, 'mobile': self.mobile, 'email': self.email_str, 'working': self.working, 'arriving': self.arriving}       
         storing = Database(2,emp)
         storing.create_data()
 
-    def updatePhonenumber(self):
-        pass
-
-    def updateMobile(self):
-        pass
-
-    def updateEmail(self):
-        pass
-
-    def updateAddress(self):
-        pass
-
-    def updateTile(self):
-        pass
-
-
-class flight_attendant(Employee):
-    def __init__ (self, supervisor, airplane_type):
-        self.supervisor = supervisor
-        self.airplane_type = airplane_type
-        self.distance = Flight.distance
-        
-    def set_supervisor(self):
-        '''
-        Þetta fall á að beyta einu gildi á flight attendant starfsmanni. 
-        Semsagt að geta breytt úr Supervisor = False yfir í Supervisor = True.
-        Þarf að sækja csv frá Datalayer.
-        '''
-        pass
+    def update_employee(self):
+        #Update a employee
+        emp = {'ssn': self.ssn, 'firstname': self.firstname, 'lastname': self.lastname, 'role': self.role , 'rank': self.rank, 'licence': self.licence, 'address': self.address, 'mobile': self.mobile, 'email': self.email_str, 'working': self.working, 'arriving': self.arriving}
+        update = Database(2,emp)
+        update.update_data()
 
 
 class Voyage(Flight):
-    def __init__(self, destination, date_from_iceland, date_back_to_iceland, pilot_captain, pilot_copilot, flight_attendant_supervisor, flight_attendant):
+    ''' A child of flight. Class for handling voyages. '''
+    def __init__(self, date_from_iceland, destination, date_back_to_iceland, pilot_captain, pilot_copilot, flight_attendant_supervisor, flight_attendant):
         self.destination = destination
         self.date_from_iceland = date_from_iceland
         self.date_back_to_iceland = date_back_to_iceland
@@ -100,15 +65,20 @@ class Voyage(Flight):
         self.flight_attendant = flight_attendant
     
     def store_voyage(self):
-        voy = {'destination': self.destination, 'date_from_iceland': self.date_from_iceland, 'date_back_to_iceland': self.date_back_to_iceland,'pilot_captain': self.pilot_captain ,'pilot_copilot': self.pilot_copilot,'flight_attendant_supervisor': self.flight_attendant_supervisor,'flight_attendant': self.flight_attendant}       
+        #Creates new voyages
+        voy = {'date_from_iceland': self.date_from_iceland, 'destination': self.destination, 'date_back_to_iceland': self.date_back_to_iceland,'pilot_captain': self.pilot_captain ,'pilot_copilot': self.pilot_copilot,'flight_attendant_supervisor': self.flight_attendant_supervisor,'flight_attendant': self.flight_attendant}       
         storing = Database(6,voy)
         storing.create_data()
-    
-    def update_fight_number(self):
-        pass
+
+    def update_voyage(self):
+        #Updates voyages
+        voy = {'destination': self.destination, 'date_from_iceland': self.date_from_iceland, 'date_back_to_iceland': self.date_back_to_iceland,'pilot_captain': self.pilot_captain ,'pilot_copilot': self.pilot_copilot,'flight_attendant_supervisor': self.flight_attendant_supervisor,'flight_attendant': self.flight_attendant}      
+        storing = Database(6,voy)
+        storing.update_data()  
 
 
 class Destination:
+    ''' Class for handling destinations '''
     def __init__(self, short, location, airport, flighttime, distance, emergencycontact, emergencynumber):
         self.short = short
         self.location = location
@@ -119,15 +89,14 @@ class Destination:
         self.emergencynumber = emergencynumber
     
     def store_destination(self):
+        #Create new destination
         dest_dict = {'id': self.short, 'location': self.location, 'airport': self.airport,'flighttime': self.flighttime,'distance': self.distance,'contact': self.emergencycontact,'number': self.emergencynumber}
         storing = Database(3,dest_dict)
         storing.create_data()
 
-    def updateEmergencyContact(self):
-        pass
-
 
 class Aircraft():
+    ''' Class to handle aircrafts '''
     def __init__(self, aircraft_type, num_seats, manufacturer, name_of_aircraft):
         self.aircraft_type = aircraft_type
         self.num_seats = num_seats
@@ -135,32 +104,14 @@ class Aircraft():
         self.name_of_aircraft = name_of_aircraft
         
     def store_aircraft(self):
+        #Creates a new aircraft
         airc = {'aircraft_type': self.aircraft_type, 'num_seats': self.num_seats, 'manufacturer': self.manufacturer,'name_of_aircraft': self.name_of_aircraft}       
         storing = Database(1,airc)
         storing.create_data()
-
-    def save_aircraft(self):
-        pass
-
-
-class Pilot(Employee):
-    def __init__(self, aircraft, flight_license, aircraft_type, captain):
-        self.aircraft = aircraft
-        self.flight_license = flight_license
-        self.aircraft_type = aircraft_type
-        self.captain = captain
-
-    def update_licence(self):
-        pass
-
-    def set_airplane(self):
-        pass
-
-    def update_aiplane_type(self):
-        pass
     
 
 class Get_Data:
+    ''' Handles all listing data. '''
     def __init__(self, request, SSN=None, licence=None, name=None, date=None, key=None):
         self.SSN = SSN
         self.datalist = None
@@ -179,11 +130,13 @@ class Get_Data:
             self.key = "flight_attendant"
 
     def get_emp_list(self):
+        #List employees
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
         return self.datalist
 
     def get_specific_emp(self):
+        #List specific employee by SSN
         templist = []
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
@@ -196,6 +149,7 @@ class Get_Data:
             return False
 
     def get_pilots(self):
+        #Lists pilots
         templist = []
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
@@ -205,6 +159,7 @@ class Get_Data:
         return templist
 
     def get_flightattendants(self):
+        #Lists flight attendants
         templist = []
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
@@ -214,11 +169,13 @@ class Get_Data:
         return templist
 
     def get_destinations(self):
+        #List destination
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
         return self.datalist
 
     def get_emp_not_working(self):
+        #List employees that are not working
         templist = []
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
@@ -228,6 +185,7 @@ class Get_Data:
         return templist
 
     def get_emp_working(self):
+        #List employees that are working
         templist = []
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
@@ -236,18 +194,14 @@ class Get_Data:
                 templist.append(row)
         return templist
 
-    def get_emp_work_summary(self):
-        pass
-
-    def get_aircraft_pilot_licence(self):
-        pass
-
     def get_voyage(self):
+        #List voyages
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
         return self.datalist
 
     def get_voyage_emp_week(self):
+        #List voyages flown by a employee in a certain week.
         templist = []
         finallist = []
         self.date = datetime.datetime.fromisoformat(self.date)
@@ -270,6 +224,7 @@ class Get_Data:
             return False
 
     def get_voyage_week(self):
+        #Lists voyages in a certain week
         finallist = []
         self.date = datetime.datetime.fromisoformat(self.date)
         timedelta = datetime.timedelta(days=1)
@@ -287,6 +242,7 @@ class Get_Data:
             return False
 
     def get_voyage_day(self):
+        #List voyages flown on a day
         finallist = []
         self.date = datetime.datetime.fromisoformat(self.date)
         self.DBsmith = Database(self.request)
@@ -300,10 +256,8 @@ class Get_Data:
         else:
             return False
 
-    def get_voyage_ID(self):
-        pass
-
     def get_pilots_from_airtype(self):
+        #Lists pilots that have licence on entered aircraft
         templist = []
         self.DBsmith = Database(self.request)
         self.datalist = self.DBsmith.get_data()
@@ -315,10 +269,8 @@ class Get_Data:
         else:
             return False
 
-    def get_nan_aircrafts(self):
-        pass
-
     def get_checker(self):
+        #Helper to check if employee has already flown on entered day
         checker = False
         self.date = datetime.datetime.fromisoformat(self.date)
         self.DBsmith = Database(self.request)
