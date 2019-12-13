@@ -428,7 +428,7 @@ def get_voyage():
                 print("#############################################################")
         print()
         input("Press ENTER to continue.. ")
-        get_sub_menu()
+        get_voyage()
 
     elif user_input_sec == "2":
         date_temp = input("Enter a date: ")
@@ -445,7 +445,7 @@ def get_voyage():
                 print("#############################################################")
         print()
         input("Press ENTER to continue.. ")
-        get_sub_menu()
+        get_voyage()
 
 
     elif user_input_sec == MAINMENU:
